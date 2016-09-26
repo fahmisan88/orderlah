@@ -1,0 +1,28 @@
+
+<h2><%= @restaurant.name %></h2>
+<br>
+<div class = "meals">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Menu</th>
+      <th>Price</th>
+      <th>Select</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @restaurant.meals.each do |meal|%>
+    <tr>
+      <td><%=meal.name%></td>
+      <td><%= meal.price %></td>
+      <td><%=check_box_tag 'meal_id[]', meal.id %></td>
+    </tr>
+    <%end%>
+  </tbody>
+
+</table>
+
+</div>
