@@ -1,0 +1,56 @@
+// Colors
+$black: #090f25;
+
+$white: #fff;
+
+$blue: #0072f6;
+$blue-darken: darken($blue, 10%);
+$blue-lighten: lighten($blue, 30%);
+
+$gray: #f2f5fa;
+$gray_2: #cfd3e0;
+$gray_3: #c5cad8;
+$gray_accent: #5c6689;
+
+$pink: #f6338d;
+
+$orange: #f2b828;
+
+
+// Fonts Family
+$font-family: 'Lato', sans-serif;
+
+// Fonts Size
+$base__font-size: 16 !default;
+$base__line: 20 !default;
+
+// Responsive utilities
+$xl-min-width: 1600px;
+$xl-max-width: 1599px;
+$lg-min-width: 1200px;
+$lg-max-width: 1199px;
+$md-min-width: 992px;
+$md-max-width: 991px;
+$sm-min-width: 768px;
+$sm-max-width: 767px;
+$xs-min-width: 544px;
+$xs-max-width: 543px;
+
+// Convert pixels to REMs
+@function rem($px, $base: $base__font-size) {
+    @return #{$px/$base}rem;
+}
+
+// Transitions
+@mixin transition-1() {
+  transition: all 0.05s ease-in-out;
+}
+@mixin transition-2() {
+  transition: all 0.1s ease-in-out;
+}
+@mixin transition-4() {
+  transition: all 0.2s ease-in-out;
+}
+@mixin transition-8() {
+  transition: all 0.4s ease-in-out;
+}

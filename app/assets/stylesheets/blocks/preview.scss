@@ -1,0 +1,27 @@
+@import '../mixins';
+
+/*
+ *  PREVIEW BLOCK
+ */
+
+
+.cwt {
+    &__preview {
+        height: 100vh;
+        background: url(../../../img/preview.jpg) no-repeat center center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        &__title {
+            font-size: rem(60);
+            font-weight: 900;
+            line-height: rem(80);
+            letter-spacing: 2px;
+            color: $white;
+            text-transform: uppercase;
+            margin: rem(50) 0;
+        }
+    }
+}

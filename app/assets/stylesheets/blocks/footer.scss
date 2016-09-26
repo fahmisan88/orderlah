@@ -1,0 +1,50 @@
+@import '../mixins';
+
+/*
+ *  FOOTER BLOCK
+ */
+
+
+.cwt {
+    &__footer {
+        background: $black;
+        color: $gray_accent;
+        padding-top: rem(50);
+        padding-bottom: rem(50);
+        font-size: rem(14);
+        &__title {
+            text-transform: uppercase;
+            margin-bottom: rem(30);
+            margin-top: rem(50);
+            font-size: rem(18);
+            &--light {
+                color: $gray_3;
+            }
+        }
+        &__link {
+            color: $gray_accent !important;
+            text-decoration: underline;
+            display: inline-block;
+            margin-bottom: rem(10);
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        &__bottom {
+            margin-top: rem(40);
+            padding-top: rem(50);
+            border-top: 1px solid rgba($gray-accent, .4);
+        }
+        &__company {
+            padding-left: rem(60);
+            position: relative;
+            line-height: rem(11);
+        }
+        &__company-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: rem(30);
+        }
+    }
+}
