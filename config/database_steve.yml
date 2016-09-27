@@ -12,7 +12,7 @@
 #       Install PostgreSQL and put its /bin directory on your path.
 #
 # Configure Using Gemfile
-# gem 'pg'
+# gem 'pg'z
 #
 default: &default
   adapter: postgresql
@@ -86,4 +86,4 @@ production:
   <<: *default
   database: orderlah_production
   username: stevewong
-  password: <%= ENV['OLDFOLKSHOP_DATABASE_PASSWORD'] %>
+  password: <%= ENV['ORDERLAH_DATABASE_PASSWORD'] %>

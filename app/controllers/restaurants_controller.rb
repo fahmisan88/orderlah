@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @restaurants = Restaurant.all
@@ -12,27 +12,29 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
+    authorize @restaurant
   end
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user_id = current_user.id
+    authorize @restaurant
 
       if @restaurant.save
         redirect_to restaurants_path, notice: 'Restaurant was successfully created.'
       else
         render :new
       end
-
-
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find_by(id: params[:id])
+    authorize @restaurant
   end
 
   def update
     @restaurant = Restaurant.find_by(id: params[:id])
+    authorize @restaurant
 
     if @restaurant.update(restaurant_params)
       redirect_to restaurants_path, notice: 'Restaurant was successfully updated.'
@@ -41,6 +43,7 @@ class RestaurantsController < ApplicationController
 
   def destroy
     @restaurant = Restaurant.find_by(id: params[:id])
+    authorize @restaurant
 
     if @restaurant.destroy
      redirect_to restaurants_path, notice: 'Restaurant was successfully destroyed.'
