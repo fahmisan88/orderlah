@@ -3,12 +3,12 @@
 */
 @font-face {
   font-family: 'Linearicons-Free';
-  src:url('../../../fonts/Linearicons-Free.eot?w118d');
-  src:url('../../../fonts/Linearicons-Free.eot?#iefixw118d') format('embedded-opentype'),
-  url('../../../fonts/Linearicons-Free.woff2?w118d') format('woff2'),
-  url('../../../fonts/Linearicons-Free.woff?w118d') format('woff'),
-  url('../../../fonts/Linearicons-Free.ttf?w118d') format('truetype'),
-  url('../../../fonts/Linearicons-Free.svg?w118d#Linearicons-Free') format('svg');
+  src:font-url('Linearicons-Free.eot?w118d');
+  src:font-url('Linearicons-Free.eot?#iefixw118d') format('embedded-opentype'),
+  font-url('Linearicons-Free.woff2?w118d') format('woff2'),
+  font-url('Linearicons-Free.woff?w118d') format('woff'),
+  font-url('Linearicons-Free.ttf?w118d') format('truetype'),
+  font-url('Linearicons-Free.svg?w118d#Linearicons-Free') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -544,8 +544,8 @@
 */
 @font-face {
   font-family: 'icomoon-ultimate';
-  src: url("../../../fonts/icomoon-ultimate.eot?i14t76");
-  src: url("../../../fonts/icomoon-ultimate.eot?i14t76#iefix") format("embedded-opentype"), url("../../../fonts/icomoon-ultimate.ttf?i14t76") format("truetype"), url("../../../fonts/icomoon-ultimate.woff?i14t76") format("woff"), url("../../../fonts/icomoon-ultimate.svg?i14t76#icomoon") format("svg");
+  src: font-url("icomoon-ultimate.eot?i14t76");
+  src: font-url("icomoon-ultimate.eot?i14t76#iefix") format("embedded-opentype"), font-url("icomoon-ultimate.ttf?i14t76") format("truetype"), font-url("icomoon-ultimate.woff?i14t76") format("woff"), font-url("icomoon-ultimate.svg?i14t76#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }

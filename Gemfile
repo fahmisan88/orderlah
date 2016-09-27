@@ -61,8 +61,6 @@ gem 'rails-assets-nprogress', source: 'https://rails-assets.org'
 gem 'rails-assets-jquery-steps', source: 'https://rails-assets.org'
 gem 'rails-assets-bootstrap-select', source: 'https://rails-assets.org'
 gem 'rails-assets-Chart.js', source: 'https://rails-assets.org'
-gem 'rails-assets-typed.js', source: 'https://rails-assets.org'
-gem 'rails-assets-three.js', source: 'https://rails-assets.org'
 gem 'rails-assets-jquery.scrollTo', source: 'https://rails-assets.org'
 
 
