@@ -1,10 +1,11 @@
 
-<h2><%= @restaurant.name %></h2>
+<!-- <h2>< %= @restaurant.name %></h2> -->
 <br>
 <div class = "meals">
 
+<% if current_user&.restaurant_owner? %>
 <%= link_to "New Meal", new_restaurant_meal_path(@restaurant) %>
-
+<% end %>
 
 <table class="table table-bordered">
   <thead>
@@ -22,6 +23,10 @@
       <td><%=meal.name%></td>
       <td><%= meal.price %></td>
       <td><%=check_box_tag 'meal_id[]', meal.id %></td>
+      <% if current_user&.admin? || current_user&.restaurant_owner? %>
+      <td> <%= link_to "EDIT", edit_restaurant_meal_path(@restaurant, meal) %></td>
+        <td><%= link_to "DELETE", restaurant_meal_path(@restaurant, meal), method: :delete, data: { confirm: "Delete?" } %></td>
+      <% end %>
     </tr>
     <%end%>
   </tbody>

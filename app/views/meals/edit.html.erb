@@ -1,4 +1,6 @@
-<%= form_for(@meal, url: restaurant_meals_path(@restaurant, @meal)) do |f| %>
+<h1>Editing Meal</h1>
+
+<%= form_for(@meal, url: restaurant_meal_path(@restaurant, @meal)) do |f| %>
 
   <div>
     <%= f.label :name %>
@@ -20,3 +22,5 @@
   </div>
 
 <% end %>
+
+<%= link_to 'Back', restaurants_path, class:"btn btn-link" %>

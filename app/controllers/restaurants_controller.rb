@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+
+
   def index
     @restaurants = Restaurant.all
   end
@@ -16,14 +18,12 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user_id = current_user.id
 
-
-    respond_to do |format|
       if @restaurant.save
-        format.html { redirect_to restaurants_path, notice: 'Restaurant was successfully created.' }
+        redirect_to restaurants_path, notice: 'Restaurant was successfully created.'
       else
-        format.html { render :new }
+        render :new
       end
-    end
+
 
   end
 
@@ -32,21 +32,24 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find_by(id: params[:id])
+
     if @restaurant.update(restaurant_params)
-      flash[:success]
-    else
-      flash[:danger]
+      redirect_to restaurants_path, notice: 'Restaurant was successfully updated.'
     end
   end
 
   def destroy
+    @restaurant = Restaurant.find_by(id: params[:id])
+
+    if @restaurant.destroy
+     redirect_to restaurants_path, notice: 'Restaurant was successfully destroyed.'
+    end
   end
 
   private
 
   def restaurant_params
     params.require(:restaurant).permit( :name, :description, :address, :city, :postcode, :state, :country, :image)
-
   end
 end

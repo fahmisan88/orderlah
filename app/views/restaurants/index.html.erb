@@ -1,5 +1,9 @@
 <h1>Restaurant list</h1>
 
+<% if current_user&.restaurant_owner? %>
+<%= link_to "New Restaurant", new_restaurant_path %>
+<% end%>
+
 <%@restaurants.each do |restaurant|%>
 <h3><%=link_to restaurant.name, restaurant_path(restaurant)%></h3>
 <h3><%=restaurant.description%></h3>
@@ -8,6 +12,8 @@
 <h3><%=restaurant.state%></h3>
 <h3><%=restaurant.postcode%></h3>
 
+<% if current_user&.admin? || current_user&.restaurant_owner? %>
+  <%= link_to "EDIT", edit_restaurant_path(restaurant) %>
+  <%= link_to "DELETE", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" } %>
+<% end %>
 <% end%>
-
-<%= link_to "New Restaurant", new_restaurant_path %>
