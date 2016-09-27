@@ -2,7 +2,13 @@ class RestaurantsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @restaurants = Restaurant.all
+
+    if params[:search]
+      Restaurant.reindex
+      @restaurants = Restaurant.search(params[:search], field:[{city: :word_start}])
+    else
+    @restaurants = Restaurant.all.order(created_at: :desc)
+    end
   end
 
   def show
