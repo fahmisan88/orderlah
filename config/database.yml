@@ -12,7 +12,7 @@
 #       Install PostgreSQL and put its /bin directory on your path.
 #
 # Configure Using Gemfile
-# gem 'pg'z
+# gem 'pg'
 #
 default: &default
   adapter: postgresql
@@ -24,14 +24,12 @@ default: &default
 development:
   <<: *default
   database: orderlah_development
-  username: stevewong
-  password: 084651940
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: oldfolkshop
+  #username: orderlah
 
   # The password associated with the postgres role (username).
   #password:
@@ -60,8 +58,6 @@ development:
 test:
   <<: *default
   database: orderlah_test
-  username: stevewong
-  password: 084651940
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,5 +81,5 @@ test:
 production:
   <<: *default
   database: orderlah_production
-  username: stevewong
+  username: orderlah
   password: <%= ENV['ORDERLAH_DATABASE_PASSWORD'] %>

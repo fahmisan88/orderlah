@@ -66,6 +66,7 @@ gem 'rails-assets-Chart.js', source: 'https://rails-assets.org'
 gem 'rails-assets-jquery.scrollTo', source: 'https://rails-assets.org'
 
 
+
 group :production do
 gem 'rails_12factor'
 end
