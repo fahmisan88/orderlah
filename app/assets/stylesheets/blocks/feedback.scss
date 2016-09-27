@@ -1,0 +1,92 @@
+@import '../mixins';
+
+/*
+ *  FEEDBACK BLOCK
+ */
+
+
+.cwt {
+    &__feedback {
+        &__container {
+            max-width: rem(900);
+            border: 1px solid $gray_3;
+            padding: rem(35) rem(45) rem(20);
+            border-radius: 8px;
+            margin: rem(60) auto 0;
+            font-size: rem(18);
+            position: relative;
+            &__stars {
+                position: absolute;
+                bottom: rem(35);
+                right: rem(35);
+                color: $orange;
+                font-size: rem(24);
+
+                @media (max-width: $sm-max-width) {
+                    position: static;
+                    display: block;
+                    width: rem(200);
+                    margin: 0 auto rem(20);
+                    text-align: center;
+                }
+            }
+            &:before {
+                width: 0;
+                height: 0;
+                content: "";
+                display: block;
+                border: 20px solid;
+                border-color: transparent transparent $gray_3 transparent;
+                transform: rotate(-45deg);
+                position: absolute;
+                bottom: -20px;
+                right: 25%;
+            }
+            &:after {
+                width: 0;
+                height: 0;
+                content: "";
+                display: block;
+                border: 19px solid;
+                border-color: transparent transparent $gray transparent;
+                transform: rotate(-45deg);
+                position: absolute;
+                bottom: -18px;
+                right: 25%;
+            }
+        }
+        &__user {
+            max-width: rem(500);
+            text-align: center;
+            position: relative;
+            margin: rem(30) auto rem(30);
+            &__avatar {
+                padding: 5px;
+                background: $white;
+                width: rem(90);
+                height: rem(90);
+                border-radius: 100%;
+                overflow: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
+                img {
+                    width: rem(80);
+                    height: rem(80);
+                    border-radius: 100%;
+                    border: none;
+                }
+            }
+            &__title {
+                font-size: rem(18);
+                padding-top: rem(17);
+                font-weight: bold;
+                span {
+                    font-weight: normal;
+                    font-style: italic;
+                    color: $gray_accent;
+                }
+            }
+        }
+    }
+}

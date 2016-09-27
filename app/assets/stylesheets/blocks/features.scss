@@ -1,0 +1,77 @@
+@import '../mixins';
+
+/*
+ *  FEATURES BLOCK
+ */
+
+
+.cwt {
+    &__features {
+        &__container {
+            padding: rem(60) 0 rem(0);
+        }
+        &__item {
+            position: relative;
+            padding-left: rem(80);
+            margin-bottom: rem(40);
+            min-height: rem(130);
+
+            @media (max-width: $lg-max-width) {
+                max-width: rem(500);
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            @media (max-width: $md-max-width) {
+                padding-left: rem(120);
+                min-height: rem(150);
+            }
+
+            @media (max-width: $sm-max-width) {
+                min-height: rem(100);
+            }
+            &:hover {
+                .cwt__features__icon {
+                    transform: scale(1.1);
+                    color: $black;
+                }
+            }
+        }
+        &__icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: rem(46);
+            color: rgba($gray_accent, 1);
+
+            @include transition-4();
+
+            @media (max-width: $md-max-width) {
+                top: rem(5);
+                font-size: rem(56);
+            }
+        }
+        &__title {
+            display: block;
+            margin: rem(0) 0 rem(10);
+            font-weight: bold;
+            font-size: rem(24);
+            white-space: nowrap;
+
+            @media (max-width: $md-max-width) {
+                font-size: rem(28);
+            }
+        }
+        &__descr {
+            color: $gray_accent;
+            font-size: rem(18);
+            display: block;
+            padding-right: rem(40);
+            font-weight: 300;
+
+            @media (max-width: $md-max-width) {
+                font-size: rem(21);
+            }
+        }
+    }
+}

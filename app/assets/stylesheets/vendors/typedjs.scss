@@ -1,0 +1,40 @@
+@import '../mixins';
+
+/*
+ *  TYPED.JS
+ */
+
+.typed-cursor {
+    opacity: 1;
+    animation: blink 0.7s infinite;
+    display: inline-block;
+    position: relative;
+    left: rem(4);
+    margin-bottom: rem(-8);
+    line-height: rem(40);
+    background: $black;
+    width: rem(5);
+    height: rem(55);
+
+    @media (max-width: $md-max-width) {
+        height: rem(40);
+    }
+}
+
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-webkit-keyframes blink {
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-moz-keyframes blink {
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}

@@ -1,0 +1,9 @@
+//= require jquery
+//= require jquery_ujs
+//= require tether
+//= require bootstrap
+//= require typed.min
+//= require three.min
+//= require jquery.scrollTo
+//= require common
+//= require turbolinks

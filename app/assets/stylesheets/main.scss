@@ -1,0 +1,21 @@
+// We don't need to concatenate ".scss" resulting files to one here, that's why we just import ".css" files
+
+// HELPERS
+@import 'helpers/fonts.css';
+@import 'helpers/base.css';
+
+// BLOCKS
+@import 'blocks/header.css';
+@import 'blocks/showcase.css';
+@import 'blocks/promo.css';
+@import 'blocks/gallery.css';
+@import 'blocks/features.css';
+@import 'blocks/action.css';
+@import 'blocks/feedback.css';
+@import 'blocks/footer.css';
+@import 'blocks/about.css';
+@import 'blocks/header-fixed.css';
+@import 'blocks/preview.css';
+
+// VENDORS
+@import 'vendors/typedjs.css';

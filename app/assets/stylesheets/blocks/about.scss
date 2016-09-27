@@ -1,0 +1,14 @@
+@import '../mixins';
+
+/*
+ *  ABOUT BLOCK
+ */
+
+
+.cwt {
+    &__about {
+        &__container {
+            padding: rem(50) 0 0;
+        }
+    }
+}
