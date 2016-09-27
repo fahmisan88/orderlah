@@ -8,15 +8,20 @@ class MealsController < ApplicationController
   end
 
   def new
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
     @meal = Meal.new
   end
 
   def create
-    @meal = Meal.new(meal_params)
-    if @meal.save
-      redirect_to root_path
-    else
-      redirect_to root_path
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+    @meal = Meal.new(meal_params.merge(restaurant_id: params[:restaurant_id]))
+
+    respond_to do |format|
+      if @meal.save
+        format.html { redirect_to restaurant_path(@restaurant), notice: 'Meals was successfully created.' }
+      else
+        format.html { render :new }
+      end
     end
 
   end
@@ -41,7 +46,6 @@ class MealsController < ApplicationController
 
   def meal_params
     params.require(:meal).permit( :name, :description, :price)
-
   end
 
 end

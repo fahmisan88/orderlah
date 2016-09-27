@@ -14,11 +14,15 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.user_id = current_user.id
 
-    if @restaurant.save
-      redirect_to root_path
-    else
-      redirect_to root_path
+
+    respond_to do |format|
+      if @restaurant.save
+        format.html { redirect_to restaurants_path, notice: 'Restaurant was successfully created.' }
+      else
+        format.html { render :new }
+      end
     end
 
   end
