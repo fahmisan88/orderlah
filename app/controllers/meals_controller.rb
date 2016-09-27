@@ -16,30 +16,38 @@ class MealsController < ApplicationController
     @restaurant = Restaurant.find_by(id: params[:restaurant_id])
     @meal = Meal.new(meal_params.merge(restaurant_id: params[:restaurant_id]))
 
-    respond_to do |format|
       if @meal.save
-        format.html { redirect_to restaurant_path(@restaurant), notice: 'Meals was successfully created.' }
+        redirect_to restaurant_path(@restaurant), notice: 'Meals was successfully created.'
       else
-        format.html { render :new }
+        render :new
       end
-    end
 
   end
 
   def edit
-    @meal = Meal.find(params[:id])
+    # @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+    @meal = Meal.find_by(id: params[:id])
+    @restaurant = @meal.restaurant
+
   end
 
   def update
-    @meal = Meal.find(params[:id])
+    @meal = Meal.find_by(id: params[:id])
+    @restaurant = @meal.restaurant
+
     if @meal.update(meal_params)
-      flash[:success]
-    else
-      flash[:danger]
+      redirect_to restaurant_path(@restaurant), notice: 'Meal was successfully updated.'
     end
   end
 
   def destroy
+    @meal = Meal.find_by(id: params[:id])
+    @restaurant = @meal.restaurant
+
+    if @meal.destroy
+     redirect_to restaurant_path(@restaurant), notice: 'Meal was successfully destroyed.'
+    end
+
   end
 
   private
