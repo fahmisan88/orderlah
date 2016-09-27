@@ -51,8 +51,8 @@ gem 'rails-assets-owl.carousel', source: 'https://rails-assets.org'
 gem 'rails-assets-ionrangeslider', source: 'https://rails-assets.org'
 gem 'rails-assets-nestable2', source: 'https://rails-assets.org'
 gem 'rails-assets-DataTables', source: 'https://rails-assets.org'
-gem 'rails-assets-datatables-responsive', source: 'https://rails-assets.org'
-gem 'rails-assets-datatables-fixedcolumns', source: 'https://rails-assets.org'
+# gem 'rails-assets-datatables-responsive', source: 'https://rails-assets.org'
+# gem 'rails-assets-datatables-fixedcolumns', source: 'https://rails-assets.org'
 gem 'rails-assets-chartist-plugin-tooltip', source: 'https://rails-assets.org'
 gem 'rails-assets-c3', source: 'https://rails-assets.org'
 gem 'rails-assets-d3', source: 'https://rails-assets.org'
@@ -64,6 +64,10 @@ gem 'rails-assets-jquery-steps', source: 'https://rails-assets.org'
 gem 'rails-assets-bootstrap-select', source: 'https://rails-assets.org'
 gem 'rails-assets-Chart.js', source: 'https://rails-assets.org'
 gem 'rails-assets-jquery.scrollTo', source: 'https://rails-assets.org'
+
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'searchkick'
 
 
 group :production do
