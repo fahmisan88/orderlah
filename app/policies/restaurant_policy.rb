@@ -16,6 +16,10 @@ class RestaurantPolicy < ApplicationPolicy
     new?
   end
 
+  def destroy?
+    new?
+  end
+
 
   private
 

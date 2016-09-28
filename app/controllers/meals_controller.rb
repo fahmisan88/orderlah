@@ -2,6 +2,7 @@ class MealsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
     @meals = Meal.all
   end
 
@@ -58,7 +59,7 @@ class MealsController < ApplicationController
   private
 
   def meal_params
-    params.require(:meal).permit( :name, :description, :price)
+    params.require(:meal).permit(:name, :description, :price, :image)
   end
 
 end
