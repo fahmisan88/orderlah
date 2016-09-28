@@ -16,6 +16,9 @@ class MealPolicy < ApplicationPolicy
     new?
   end
 
+  def destroy?
+    new?
+  end
 
   private
 

@@ -13,7 +13,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
-    # @meals = Meal.where(restaurant_id: params[:id]) --> you can use this code if there is no association between models
+    @meals = Meal.where(restaurant_id: params[:id]) #--> you can use this code if there is no association between models
   end
 
   def new
@@ -59,6 +59,6 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit( :name, :description, :address, :city, :postcode, :state, :country, :image)
+    params.require(:restaurant).permit( :name, :description, :address, :city, :postcode, :state, :country, :profile_image, :banner_image)
   end
 end

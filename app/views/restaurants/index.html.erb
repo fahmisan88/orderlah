@@ -1,9 +1,20 @@
+<% if user_signed_in? %>
+          <li><%= link_to "Apply to open a Restaurant" %></li>
+          <li><%= link_to "View All Restaurants", restaurants_path %></li>
+          <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign In", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
+
+
 <h1>Restaurant list</h1>
 
 <% if current_user&.restaurant_owner? %>
-  <%= link_to "New Restaurant", new_restaurant_path %>
+  <%= link_to "New Restaurant", new_restaurant_path, class:"btn btn-primary" %>
 <% end%>
-</div>
+<p>
 
 <table class="table table-bordered">
   <thead>
@@ -11,23 +22,23 @@
       <th>Restaurant Image</th>
       <th>Restaurant Name</th>
       <th>Description</th>
-      <th>Address</th>
+      <!-- <th>Address</th>
       <th>City</th>
       <th>State</th>
-      <th>Postcode</th>
+      <th>Postcode</th> -->
     </tr>
   </thead>
 
   <tbody>
   <% @restaurants.each do |restaurant| %>
   <tr>
-    <td><h3><%=restaurant.image%></h3></td>
-    <td><h3><%=link_to restaurant.name, restaurant_path(restaurant)%></h3></td>
-    <td><h3><%=restaurant.description%></h3></td>
-    <td><h3><%=restaurant.address%></h3></td>
-    <td><h3><%=restaurant.city%></h3></td>
-    <td><h3><%=restaurant.state%></h3></td>
-    <td><h3><%=restaurant.postcode%></h3></td>
+    <td><%= image_tag restaurant.profile_image.thumb %></td>
+    <td><%=link_to restaurant.name, restaurant_path(restaurant)%></td>
+    <td><%=restaurant.description%></td>
+    <!-- <td>< %=restaurant.address%></td> -->
+    <!-- <td>< %=restaurant.city%></td> -->
+    <!-- <td>< %=restaurant.state%></td> -->
+    <!-- <td>< %=restaurant.postcode%></td> -->
 
     <% if current_user&.admin? || current_user&.restaurant_owner? %>
     <td>  <%= link_to "EDIT", edit_restaurant_path(restaurant), class:"btn btn-success" %></td>

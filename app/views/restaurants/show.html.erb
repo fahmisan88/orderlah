@@ -1,16 +1,23 @@
-
+<div align="center">
+<h2><%= image_tag @restaurant.profile_image.thumb %></h2>
 <h2><%= @restaurant.name %></h2>
+<h5><%= @restaurant.address %></h5>
+
+</div>
 
 <div class = "meals">
+<%= link_to "Back to Restaurant", restaurants_path, class:"btn btn-primary" %>
 
 <% if current_user&.restaurant_owner? %>
-<%= link_to "New Meal", new_restaurant_meal_path(@restaurant) %>
+<%= link_to "New Meal", new_restaurant_meal_path(@restaurant), class:"btn btn-primary" %>
 <% end %>
+<p>
 
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Menu</th>
+      <th>Image</th>
+      <th>Meal</th>
       <th>Price</th>
       <th>Select</th>
     </tr>
@@ -19,9 +26,10 @@
   <tbody>
     <% @restaurant.meals.each do |meal|%>
     <tr>
-      <td><%=meal.name%></td>
+      <td><%= image_tag meal.image.thumb %></td>
+      <td><%= meal.name%></td>
       <td><%= meal.price %></td>
-      <td><%=check_box_tag 'meal_id[]', meal.id %></td>
+      <td><%= check_box_tag 'meal_id[]', meal.id %></td>
 
       <% if current_user&.admin? || current_user&.restaurant_owner? %>
         <td><%= link_to "EDIT", edit_restaurant_meal_path(@restaurant, meal), class:"btn btn-success" %></td>

@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927025053) do
+ActiveRecord::Schema.define(version: 20160928085447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "applications", force: :cascade do |t|
+    t.string   "restaurant_name"
+    t.string   "restaurant_ssm_image"
+    t.string   "phone"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.boolean  "status"
+  end
 
   create_table "meals", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160927025053) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "restaurant_id"
+    t.string   "image"
   end
 
   create_table "ordered_meals", force: :cascade do |t|
@@ -50,11 +60,12 @@ ActiveRecord::Schema.define(version: 20160927025053) do
     t.string   "postcode"
     t.string   "state"
     t.string   "country"
-    t.string   "image"
+    t.string   "profile_image"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user_id"
+    t.string   "banner_image"
   end
 
   create_table "users", force: :cascade do |t|
