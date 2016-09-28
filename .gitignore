@@ -13,6 +13,7 @@
 !/log/.keep
 !/tmp/.keep
 /config/database.yml
+/config/database_steve.yml
 
 # Ignore Byebug command history file.
 .byebug_history
