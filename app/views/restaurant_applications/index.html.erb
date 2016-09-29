@@ -1,0 +1,40 @@
+<% if user_signed_in? %>
+<li><%= link_to "Apply to open a Restaurant" %></li>
+<li><%= link_to "View All Restaurants", restaurants_path %></li>
+<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+<li>User Id: <%= current_user.id %></li>
+<li>User Id: <%= current_user.email %></li>
+<li>User Id: <%= current_user.role %></li>
+
+<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+<% else %>
+<li><%= link_to "Sign In", new_user_session_path %></li>
+<li><%= link_to "Sign Up", new_user_registration_path %></li>
+<% end %>
+
+
+<h1>All Restaurant Applications</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Restaurant Name</th>
+      <th>Restaurant Document</th>
+      <th>Phone</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @restaurant_applications.each do |ra| %>
+  <tr>
+    <td><%= ra.restaurant_name %></td>
+    <!-- <td>< %= image_tag ra.restaurant_doc %></td> -->
+    <td><%= ra.phone %></td>
+    <td><%= ra.status %></td>
+
+    <!-- <td>< %= link_to "EDIT", edit_restaurant_path(restaurant), class:"btn btn-success" %></td>
+    <td>< %= link_to "DELETE", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td> -->
+
+  </tr>
+  <% end%>
