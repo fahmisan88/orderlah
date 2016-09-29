@@ -15,6 +15,11 @@
 
 <h1>All Restaurant Applications</h1>
 
+<% if current_user&.restaurant_owner? %>
+  <%= link_to "New Application", new_restaurant_application_path, class:"btn btn-primary" %>
+<% end%>
+<p>
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -22,19 +27,22 @@
       <th>Restaurant Document</th>
       <th>Phone</th>
       <th>Status</th>
+      <th>Created by user</th>
     </tr>
   </thead>
 
   <tbody>
-  <% @restaurant_applications.each do |ra| %>
+  <% @restaurant_applications.each do |restaurant_application| %>
   <tr>
-    <td><%= ra.restaurant_name %></td>
-    <!-- <td>< %= image_tag ra.restaurant_doc %></td> -->
-    <td><%= ra.phone %></td>
-    <td><%= ra.status %></td>
+    <td><%= restaurant_application.restaurant_name %></td>
+    <td><%= image_tag restaurant_application.restaurant_doc.medium %></td>
+    <td><%= restaurant_application.phone %></td>
+    <td><%= restaurant_application.status %></td>
+    <td><%= restaurant_application.user.email %></td>
 
-    <!-- <td>< %= link_to "EDIT", edit_restaurant_path(restaurant), class:"btn btn-success" %></td>
-    <td>< %= link_to "DELETE", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td> -->
+
+   <td><%= link_to "EDIT", edit_restaurant_application_path(restaurant_application), class:"btn btn-success" %></td>
+    <td><%= link_to "DELETE", restaurant_application_path(restaurant_application), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td>
 
   </tr>
   <% end%>
