@@ -1,15 +1,29 @@
-<div align="center">
-<h2><%= image_tag @restaurant.profile_image.thumb %></h2>
-<h2><%= @restaurant.name %></h2>
-<h5><%= @restaurant.address %></h5>
+<% if user_signed_in? %>
+  <li><%= link_to "Apply to open a Restaurant" %></li>
+  <li><%= link_to "View All Restaurants", restaurants_path %></li>
+  <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+  <li>User Id: <%= current_user.id %></li>
+  <li>User Id: <%= current_user.email %></li>
+  <li>User Id: <%= current_user.role %></li>
+  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+<% else %>
+  <li><%= link_to "Sign In", new_user_session_path %></li>
+  <li><%= link_to "Sign Up", new_user_registration_path %></li>
+<% end %>
 
+<div align="center">
+  <h2><%= image_tag @restaurant.profile_image.thumb %></h2>
+  <h2><%= @restaurant.name %></h2>
+  <h5><%= @restaurant.address %></h5>
 </div>
 
 <div class = "meals">
 <%= link_to "Back to Restaurant", restaurants_path, class:"btn btn-primary" %>
 
 <% if current_user&.restaurant_owner? %>
-<%= link_to "New Meal", new_restaurant_meal_path(@restaurant), class:"btn btn-primary" %>
+  <% if current_user == @restaurant.user %>
+    <%= link_to "New Meal", new_restaurant_meal_path(@restaurant), class:"btn btn-primary" %>
+  <% end %>
 <% end %>
 <p>
 
@@ -20,6 +34,7 @@
       <th>Meal</th>
       <th>Price</th>
       <th>Select</th>
+      <!-- <th>Restaurant Owner</th> -->
     </tr>
   </thead>
 
@@ -30,15 +45,17 @@
       <td><%= meal.name%></td>
       <td><%= meal.price %></td>
       <td><%= check_box_tag 'meal_id[]', meal.id %></td>
+      <!-- <td>< %= meal.restaurant.user.email %></td> -->
 
       <% if current_user&.admin? || current_user&.restaurant_owner? %>
-        <td><%= link_to "EDIT", edit_restaurant_meal_path(@restaurant, meal), class:"btn btn-success" %></td>
-        <td><%= link_to "DELETE", restaurant_meal_path(@restaurant, meal), method: :delete, data: { confirm: "Delete?" }, class:"btn btn-danger" %></td>
+        <% if current_user == @restaurant.user %>
+          <td><%= link_to "EDIT", edit_restaurant_meal_path(@restaurant, meal), class:"btn btn-success" %></td>
+          <td><%= link_to "DELETE", restaurant_meal_path(@restaurant, meal), method: :delete, data: { confirm: "Delete?" }, class:"btn btn-danger" %></td>
+        <% end %>
       <% end %>
     </tr>
     <%end%>
   </tbody>
-
 </table>
 
 </div>

@@ -1,7 +1,7 @@
 class UserPolicy < ApplicationPolicy
 
   def new?
-    user.present? && record == user || user_has_power?
+    user.present? && record.user == user || user_has_power?
   end
 
   def create?
@@ -20,7 +20,7 @@ class UserPolicy < ApplicationPolicy
   private
 
   def user_has_power?
-    user.admin? || user.moderator?
+    user.admin?
   end
 
 end

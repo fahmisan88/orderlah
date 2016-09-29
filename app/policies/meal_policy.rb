@@ -1,29 +1,21 @@
 class MealPolicy < ApplicationPolicy
 
-  def new?
-    user.present? && record == user || user_has_power?
-  end
-
-  def create?
-    new?
-  end
-
   def edit?
-    new?
+    user.present? && record.restaurant.user == user || user_has_power?
   end
 
   def update?
-    new?
+    edit?
   end
 
   def destroy?
-    new?
+    edit?
   end
 
   private
 
   def user_has_power?
-    user.admin? || user.restaurant_owner?
+    user.admin?
   end
 
 end
