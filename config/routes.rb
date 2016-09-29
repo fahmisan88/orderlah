@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :restaurants do
     resources :meals
   end
+  resources :restaurant_applications
+
 end
