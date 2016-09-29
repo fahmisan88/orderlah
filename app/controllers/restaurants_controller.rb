@@ -3,12 +3,14 @@ class RestaurantsController < ApplicationController
 
   def index
 
-    if params[:search]
-      Restaurant.reindex
-      @restaurants = Restaurant.search(params[:search], field:[{city: :word_start}])
-    else
-    @restaurants = Restaurant.all.order(created_at: :desc)
-    end
+    @restaurants = Restaurant.all
+
+    # if params[:search]
+    #   Restaurant.reindex
+    #   @restaurants = Restaurant.search(params[:search], field:[{city: :word_start}])
+    # else
+    #   @restaurants = Restaurant.all.order(created_at: :desc)
+    # end
   end
 
   def show
@@ -22,15 +24,17 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.user_id = current_user.id
+    # @restaurant = Restaurant.new(restaurant_params)
+    # @restaurant.user_id = current_user.id
+    @restaurant = current_user.restaurants.build(restaurant_params)
+
     authorize @restaurant
 
-      if @restaurant.save
-        redirect_to restaurants_path, notice: 'Restaurant was successfully created.'
-      else
-        render :new
-      end
+    if @restaurant.save
+      redirect_to restaurants_path, notice: 'Restaurant was successfully created.'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -52,7 +56,7 @@ class RestaurantsController < ApplicationController
     authorize @restaurant
 
     if @restaurant.destroy
-     redirect_to restaurants_path, notice: 'Restaurant was successfully destroyed.'
+      redirect_to restaurants_path, notice: 'Restaurant was successfully destroyed.'
     end
   end
 

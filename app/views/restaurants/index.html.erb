@@ -2,6 +2,10 @@
           <li><%= link_to "Apply to open a Restaurant" %></li>
           <li><%= link_to "View All Restaurants", restaurants_path %></li>
           <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+          <li>User Id: <%= current_user.id %></li>
+          <li>User Id: <%= current_user.email %></li>
+          <li>User Id: <%= current_user.role %></li>
+
           <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Sign In", new_user_session_path %></li>
@@ -22,6 +26,8 @@
       <th>Restaurant Image</th>
       <th>Restaurant Name</th>
       <th>Description</th>
+      <!-- <th>Owner</th> -->
+
       <!-- <th>Address</th>
       <th>City</th>
       <th>State</th>
@@ -35,14 +41,17 @@
     <td><%= image_tag restaurant.profile_image.thumb %></td>
     <td><%=link_to restaurant.name, restaurant_path(restaurant)%></td>
     <td><%=restaurant.description%></td>
+    <!-- <td>< %= restaurant.user.email %></td> -->
     <!-- <td>< %=restaurant.address%></td> -->
     <!-- <td>< %=restaurant.city%></td> -->
     <!-- <td>< %=restaurant.state%></td> -->
     <!-- <td>< %=restaurant.postcode%></td> -->
 
     <% if current_user&.admin? || current_user&.restaurant_owner? %>
-    <td>  <%= link_to "EDIT", edit_restaurant_path(restaurant), class:"btn btn-success" %></td>
-    <td>  <%= link_to "DELETE", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td>
+      <% if current_user == restaurant.user %>
+        <td><%= link_to "EDIT", edit_restaurant_path(restaurant), class:"btn btn-success" %></td>
+        <td><%= link_to "DELETE", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td>
+      <% end %>
     <% end %>
 
   </tr>

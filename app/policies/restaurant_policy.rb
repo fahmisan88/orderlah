@@ -1,7 +1,7 @@
 class RestaurantPolicy < ApplicationPolicy
 
   def new?
-    user.present? && record == user || user_has_power?
+    user.present? && user.restaurant_owner?    
   end
 
   def create?
@@ -9,22 +9,21 @@ class RestaurantPolicy < ApplicationPolicy
   end
 
   def edit?
-    new?
+    user.present? && record.user == user || user_has_power?
   end
 
   def update?
-    new?
+    edit?
   end
 
   def destroy?
-    new?
+    edit?
   end
-
 
   private
 
   def user_has_power?
-    user.admin? || user.restaurant_owner?
+    user.admin?
   end
 
 end
