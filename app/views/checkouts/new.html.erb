@@ -1,0 +1,68 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          1. Checkout Summary
+        </a>
+      </h4>
+    </div>
+    <table cellspacing="0" class="shop_table cart">
+      <thead>
+        <tr>
+          <th class="product-thumbnail">&nbsp;</th>
+          <th class="product-name">Product</th>
+          <th class="product-price">Price</th>
+          <th class="product-quantity">Quantity</th>
+          <th class="product-subtotal">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @meals.each do |meal| %>
+        <tr class="cart_item">
+          <td class="product-thumbnail">
+            <a><%= image_tag meal.image, alt:"",class:"product-thumb"%></a>
+          </td>
+          <td class="product-name">
+            <%= meal.name%>
+          </td>
+
+          <td class="product-price">
+            <%= number_to_currency(meal.price, :unit => 'RM') %>
+          </td>
+
+          <td class="product-quantity">
+            <div class="quantity buttons_added">
+              <%= meal.quantity %>
+            </div>
+          </td>
+
+          <td class="product-subtotal">
+            <span class="amount">RM<%=meal.price*=meal.quantity.to_i%></span>
+          </td>
+        </tr>
+        <%end%>
+
+      </tbody>
+    </table>
+
+    <div class="cart_totals ">
+      <h2>Total:</h2>
+
+      <table cellspacing="0">
+        <tbody>
+          <tr class="cart-subtotal">
+            <th>Grand Total</th>
+            <td><strong><span class="amount">RM<%=@total_price%></span></strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button type="button" class="collapsed btn btn-primary" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      Confirm Order
+    </button>
+  </div>
+
+
+</div>
