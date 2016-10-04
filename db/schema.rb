@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929135956) do
+ActiveRecord::Schema.define(version: 20161004033456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,14 +44,25 @@ ActiveRecord::Schema.define(version: 20160929135956) do
     t.boolean  "dine_in"
   end
 
+  create_table "phone_numbers", force: :cascade do |t|
+    t.string   "phone_number"
+    t.string   "pin"
+    t.boolean  "verified"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "restaurant_application_id"
+  end
+
   create_table "restaurant_applications", force: :cascade do |t|
     t.string   "restaurant_name"
     t.string   "restaurant_doc"
-    t.string   "phone"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.boolean  "status"
+    t.string   "phone_number"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "verified"
     t.integer  "user_id"
+    t.string   "pin"
+    t.boolean  "application_status", default: false
   end
 
   create_table "restaurants", force: :cascade do |t|

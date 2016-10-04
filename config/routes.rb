@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   end
   resources :restaurant_applications
 
+  resources :phone_numbers, only: [:edit, :update]
+  post 'phone_numbers/verify' => "phone_numbers#verify"
+
 end

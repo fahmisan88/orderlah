@@ -7,13 +7,20 @@ class RestaurantApplicationsController < ApplicationController
 
   def new
     @restaurant_application = RestaurantApplication.new
+    # @restaurant_applications = RestaurantApplication.where(user: current_user)
   end
 
   def create
-    @restaurant_application = current_user.restaurant_application.build(restaurant_application_params)
+    @restaurant_application = current_user.restaurant_applications.build(restaurant_application_params)
 
     if @restaurant_application.save
-      redirect_to restaurant_applications_path, notice: 'Application was successfully created.'
+      phone_number = @restaurant_application.build_phone_number(phone_number_params)
+
+      if phone_number.save
+        redirect_to restaurant_applications_path, notice: 'Application was successfully created.'
+      else
+        render :new
+      end
     else
       render :new
     end
@@ -39,10 +46,15 @@ class RestaurantApplicationsController < ApplicationController
     end
   end
 
+
   private
 
   def restaurant_application_params
-    params.require(:restaurant_application).permit(:restaurant_name, :restaurant_doc, :phone, :status)
+    params.require(:restaurant_application).permit(:restaurant_name, :restaurant_doc)
+  end
+
+  def phone_number_params
+    params.require(:restaurant_application).permit(:phone_number)
   end
 
 
