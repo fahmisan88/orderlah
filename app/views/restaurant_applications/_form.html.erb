@@ -6,22 +6,23 @@
   </div>
 
   <div>
-    <%= f.label :phone %>
-    <%= f.text_field :phone, class:"form-control" %>
-  </div>
-
-  <div>
     <%= f.label :restaurant_doc %>
     <%= f.file_field :restaurant_doc, class:"form-control" %>
   </div>
 
   <div>
-    <%= f.label :status %>
-    <%= f.check_box :status, class:"form-control" %>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number, :placeholder => "Your phone number starts with +60", class:"form-control" %>
   </div>
 
+  <!-- <div>
+    <%= f.label :verified %>
+    <%= f.check_box :verified, class:"form-control" %>
+  </div> -->
 
+<p>
   <div>
     <%= f.submit class:"btn btn-success" %>
   </div>
 <% end %>
+<p><p>

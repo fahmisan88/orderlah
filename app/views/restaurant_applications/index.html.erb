@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
-<li><%= link_to "Apply to open a Restaurant" %></li>
+<li><%= link_to "Apply to open a Restaurant", new_restaurant_application_path %></li>
+<li><%= link_to "View My Restaurant Application", restaurant_applications_path %></li>
 <li><%= link_to "View All Restaurants", restaurants_path %></li>
 <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
 <li>User Id: <%= current_user.id %></li>
@@ -13,7 +14,7 @@
 <% end %>
 
 
-<h1>All Restaurant Applications</h1>
+<h1>My Restaurant Application</h1>
 
 <% if current_user&.restaurant_owner? %>
   <%= link_to "New Application", new_restaurant_application_path, class:"btn btn-primary" %>
@@ -25,9 +26,11 @@
     <tr>
       <th>Restaurant Name</th>
       <th>Restaurant Document</th>
-      <th>Phone</th>
-      <th>Status</th>
-      <th>Created by user</th>
+      <th>Phone Number</th>
+      <th>Phone Verified?</th>
+      <th>Application Status</th>
+
+      <!-- <th>Created by user</th> -->
     </tr>
   </thead>
 
@@ -36,13 +39,24 @@
   <tr>
     <td><%= restaurant_application.restaurant_name %></td>
     <td><%= image_tag restaurant_application.restaurant_doc.medium %></td>
-    <td><%= restaurant_application.phone %></td>
-    <td><%= restaurant_application.status %></td>
-    <td><%= restaurant_application.user.email %></td>
+    <% if restaurant_application.phone_number.verified %>
+    <td><%= restaurant_application.phone_number.phone_number %></td>
+    <% else %>
+    <td>Pending Verification</td>
+    <% end %>
+    <td><%= restaurant_application.phone_number.verified %>
+      <% unless restaurant_application.phone_number.verified %>
+        <%= link_to "Click to verify",
+        edit_phone_number_path(restaurant_application.phone_number) %>
+      <% end %>
+    </td>
+    <td><%= restaurant_application.application_status %></td>
+
+    <!-- <td>< %= restaurant_application.user.email %></td> -->
 
 
-   <td><%= link_to "EDIT", edit_restaurant_application_path(restaurant_application), class:"btn btn-success" %></td>
-    <td><%= link_to "DELETE", restaurant_application_path(restaurant_application), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td>
+   <!-- <td><%= link_to "EDIT", edit_restaurant_application_path(restaurant_application), class:"btn btn-success" %></td>
+    <td><%= link_to "DELETE", restaurant_application_path(restaurant_application), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td> -->
 
   </tr>
   <% end%>

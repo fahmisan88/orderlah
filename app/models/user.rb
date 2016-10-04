@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :orders
   has_many :restaurants
-  has_many :restaurant_application
+  has_many :restaurant_applications
 
   enum role: [:user, :restaurant_owner, :admin]
 end
