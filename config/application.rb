@@ -22,6 +22,7 @@ module Orderlah
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.paths << Rails.root.join("app", "assets", "videos")
     config.time_zone = 'Kuala Lumpur'
     config.active_record.default_timezone = :local
   end

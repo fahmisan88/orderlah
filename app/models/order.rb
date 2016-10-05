@@ -3,4 +3,6 @@ class Order < ApplicationRecord
   belongs_to :restaurant
   has_many :meals, through: :ordered_meals
   has_many :ordered_meals
+
+  enum status: [:received, :in_progress, :completed]
 end

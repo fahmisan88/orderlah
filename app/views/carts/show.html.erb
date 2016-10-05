@@ -1,0 +1,60 @@
+<h2>Your Order</h2>
+<br>
+<% if @restaurants.empty? %>
+<h2>Your Cart Is Currently Empty</h2>
+<% else %>
+<% @restaurants.each do |restaurant_id, restaurant|%>
+<h2><%= restaurant[:name] %></h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Remove</th>
+      <th>#</th>
+      <th>Meal</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <!-- <th>Restaurant Owner</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <% restaurant[:meals].each do |meal|%>
+    <tr>
+      <td><%= link_to "x", remove_meal_path(id: meal), method: :delete, title: "Remove this meal", class: "remove" %></td>
+      <td><%= image_tag meal.image%></td>
+      <td><%= meal.name %></td>
+      <td><%= number_to_currency(meal.price, :unit => 'RM') %></td>
+      <td>
+        <input type="button" class="minus" value="-">
+        <%= text_field_tag :quantity, meal.quantity, type: "number" %>
+        <input type="button" class="plus" value="+">
+      </td>
+      <td><span class="amount">RM<%=meal.price*=meal.quantity.to_i%></span></td>
+      <!-- <td>< %= meal.restaurant.user.email %></td> -->
+    </tr>
+    <%end%>
+    <tr>
+      <td colspan="6">
+        <div class="coupon">
+          <label for="coupon_code"></label>
+          <input type="text" placeholder="Promo code" value="" id="coupon_code" class="input-text" name="coupon_code">
+          <input type="submit" value="Enter Code" name="apply_coupon" class="button">
+
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
+<% end %>
+<span>
+  <%= link_to "Add Order", root_path%>
+  <% if current_user %>
+  <% if @restaurants.empty? %>
+  <% else %>
+  <%= link_to "Place Order", new_order_path, method: :get%>
+  <% end %>
+  <%else%>
+  <%= link_to "Login first to Place Order", new_user_session_path%>
+  <%end%>
+</span>

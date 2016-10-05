@@ -45,7 +45,7 @@
       <td><%= image_tag meal.image.thumb %></td>
       <td><%= meal.name%></td>
       <td><%= meal.price %></td>
-      <td><%= check_box_tag 'meal_id[]', meal.id %></td>
+      <td><%= link_to 'Add', add_meal_path(id: meal, quantity: 1), method: :post %></td>
       <!-- <td>< %= meal.restaurant.user.email %></td> -->
 
       <% if current_user&.admin? || current_user&.restaurant_owner? %>
@@ -58,5 +58,6 @@
     <%end%>
   </tbody>
 </table>
+<%= link_to "Go To Order", cart_path, class:"btn btn-primary" %>
 
 </div>
