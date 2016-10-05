@@ -7,7 +7,6 @@ class RestaurantApplicationsController < ApplicationController
 
   def new
     @restaurant_application = RestaurantApplication.new
-    # @restaurant_applications = RestaurantApplication.where(user: current_user)
   end
 
   def create
