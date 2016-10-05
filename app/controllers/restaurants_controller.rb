@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
+
   def index
 
     @restaurants = Restaurant.all
@@ -27,7 +28,6 @@ class RestaurantsController < ApplicationController
     # @restaurant = Restaurant.new(restaurant_params)
     # @restaurant.user_id = current_user.id
     @restaurant = current_user.restaurants.build(restaurant_params)
-
     authorize @restaurant
 
     if @restaurant.save

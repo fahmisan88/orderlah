@@ -14,7 +14,8 @@
 <div align="center">
   <h2><%= image_tag @restaurant.profile_image.thumb %></h2>
   <h2><%= @restaurant.name %></h2>
-  <h5><%= @restaurant.address %></h5>
+  <h5><%= @restaurant.full_address %></h5>
+  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=300x200&sensor=false&zoom=16&markers=#{@restaurant.latitude}%2C#{@restaurant.longitude}" %>
 </div>
 
 <div class = "meals">

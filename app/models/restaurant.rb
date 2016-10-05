@@ -9,4 +9,12 @@ class Restaurant < ApplicationRecord
   mount_uploader :banner_image, ImageUploader
 
   searchkick
+
+  geocoded_by :full_address   # can also be an IP address
+
+  def full_address
+    [address, city, postcode, state, country].compact.join(', ')
+  end
+
+  after_validation :geocode        # auto-fetch coordinates
 end

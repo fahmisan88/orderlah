@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'geocoder'
 gem 'devise'
 gem 'pundit'
 gem 'twilio-ruby', '~> 4.1.0'

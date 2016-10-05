@@ -10,6 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+
 ActiveRecord::Schema.define(version: 20161004095243) do
 
   # These are extensions that must be enabled in order to support this database
@@ -79,6 +81,9 @@ ActiveRecord::Schema.define(version: 20161004095243) do
     t.integer  "user_id"
     t.string   "banner_image"
     t.integer  "restaurant_application_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "full_address"
   end
 
   create_table "users", force: :cascade do |t|
