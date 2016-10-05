@@ -1,66 +1,66 @@
-<% if user_signed_in? %>
-<li><%= link_to "Apply to open a Restaurant", new_restaurant_application_path %></li>
-<li><%= link_to "View My Restaurant Application", restaurant_applications_path %></li>
-<li><%= link_to "View All Restaurants", restaurants_path %></li>
-<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-<li>User Id: <%= current_user.id %></li>
-<li>User Id: <%= current_user.email %></li>
-<li>User Id: <%= current_user.role %></li>
-
-<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-<% else %>
-<li><%= link_to "Sign In", new_user_session_path %></li>
-<li><%= link_to "Sign Up", new_user_registration_path %></li>
-<% end %>
-
-
-<h1>Restaurant list</h1>
-
-<div class="navbar-form navbar-right">
-  <%= form_tag(restaurants_path, method: "get", id: "search-form") do |f| %>
-  <%= search_field_tag :search, params[:search], placeholder: "Search Restaurants", class: "form-control" %>
-  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-  <% end %>
-</div>
-
-<% if current_user&.restaurant_owner? %>
-  <%= link_to "New Restaurant", new_restaurant_path, class:"btn btn-primary" %>
-<% end%>
-<p>
-
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Restaurant Image</th>
-      <th>Restaurant Name</th>
-      <th>Description</th>
-      <!-- <th>Owner</th> -->
-
-      <!-- <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Postcode</th> -->
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @restaurants.each do |restaurant| %>
-  <tr>
-    <td><%= image_tag restaurant.profile_image.thumb %></td>
-    <td><%=link_to restaurant.name, restaurant_path(restaurant)%></td>
-    <td><%=restaurant.description%></td>
-    <!-- <td>< %= restaurant.user.email %></td> -->
-    <!-- <td>< %=restaurant.address%></td> -->
-    <!-- <td>< %=restaurant.city%></td> -->
-    <!-- <td>< %=restaurant.state%></td> -->
-    <!-- <td>< %=restaurant.postcode%></td> -->
-
-    <% if current_user&.admin? || current_user&.restaurant_owner? %>
-      <% if current_user == restaurant.user %>
-        <td><%= link_to "EDIT", edit_restaurant_path(restaurant), class:"btn btn-success" %></td>
-        <td><%= link_to "DELETE", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td>
-      <% end %>
-    <% end %>
-
-  </tr>
-  <% end%>
+<%= render 'layouts/navbar' %>
+<!--  Hero start  -->
+<div class="section section-fill-height section-opaque-dark text-xs-center" draggable="true">
+    <div class="background-image" style="background-image: url('assets/images/food.png');" id="videobg"></div>
+    <div class="container">
+      <div class="row">
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+							<span class="intro-text-small text-xs-center">This App Will Make You More Lazy</span>
+							<h1 class="cursive-font text-xs-center">All in good taste!</h1>
+						</div>
+		      </div>
+      <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 animate-box text-xs-center" data-animate-effect="fadeInUp">
+                <div class="input-group input-group-lg" id="front-page-search">
+                  <span class="input-group-btn">
+                    <button class="btn btn-success" type="button">Find Food</button>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Find what you want here...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-success" type="button">Find Restaurant</button>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+      </div>
+    </div>
+  </div>
+<!--  Hero end  -->
+<!--  Order steps start  -->
+  <div class="section">
+      <div class="container">
+          <div class="title">
+              Get your favourite food in 4 simple steps. <button class="btn" data-toggle="collapse" data-target="#steps-how">See how</button>
+          </div>
+          <div class="collapse" id="steps-how">
+              <ul>
+              <li class="step one">
+                  <div>
+                      <div class="title">1. Search</div>
+                      <div class="description">Find restaurants that deliver to you by entering your address</div>
+                  </div>
+              </li>
+              <li class="step two">
+                  <div>
+                      <div class="title">2. Choose</div>
+                      <div class="description">Browse hundreds of menus to find the food you like</div>
+                  </div>
+              </li>
+              <li class="step three">
+                  <div>
+                      <div class="title">3. Pay</div>
+                      <div class="description">Pay fast &amp; secure online or on delivery</div>
+                  </div>
+              </li>
+              <li class="step four">
+                  <div>
+                      <div class="title">4. Enjoy</div>
+                      <div class="description">Food is prepared &amp; delivered to your door</div>
+                  </div>
+              </li>
+          </ul>
+          </div>
+      </div>
+  </div>
+<!--  Order steps end  -->
