@@ -1,0 +1,28 @@
+<nav class="bg-faded navbar navbar-full navbar-light">
+  <a class="navbar-brand" href="#"><div class="logo"><%= image_tag 'logo-inverse.png', width: '100px', height: '35px'  %></div></a>
+<% if user_signed_in? %>
+<ul class="nav navbar-nav pull-right">
+  <li class="nav-item"><%= link_to "Apply to open a Restaurant", new_restaurant_application_path, class: "nav-link" %></li>
+  <li class="nav-item"><%= link_to "View My Restaurant Application", restaurant_applications_path, class: "nav-link" %></li>
+  <li class="nav-item"><%= link_to "View All Restaurants", restaurants_path, class: "nav-link" %></li>
+  <li class="nav-item"><%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link" %></li>
+
+  <li class="nav-item">User Id: <%= current_user.id %></li>
+  <li class="nav-item">User Id: <%= current_user.email %></li>
+  <li class="nav-item">User Id: <%= current_user.role %></li>
+
+  <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, class: "nav-link", method: :delete %></li>
+</ul>
+<% else %>
+  <ul class="nav navbar-nav pull-right">
+    <li class="nav-item">
+      <!-- <%= link_to "Sign In", new_user_session_path, class: "nav-link" %> -->
+      <a href="javascript:;" data-toggle="modal" data-target="#loginModal">Login or Sign Up</a>
+    </li>
+    <!-- <li class="nav-item">
+      <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+    </li> -->
+  </ul>
+
+<% end %>
+</nav>
