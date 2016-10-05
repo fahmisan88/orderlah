@@ -11,20 +11,19 @@
 <table cellspacing="0" class="table table-bordered">
   <thead>
     <tr>
-      <th class="product-thumbnail">&nbsp;</th>
+
       <th class="product-name">Product</th>
       <th class="product-price">Price</th>
       <th class="product-quantity">Quantity</th>
       <th class="product-subtotal">Total</th>
+      <th class="product-subtotal">Pickup Time</th>
     </tr>
   </thead>
   <tbody>
 
     <% restaurant[:meals].each do |meal| %>
     <tr class="cart_item">
-      <td class="product-thumbnail">
-        <a><%= image_tag meal.image, alt:"",class:"product-thumb"%></a>
-      </td>
+
       <td class="product-name">
         <%= meal.name%>
       </td>
@@ -34,13 +33,14 @@
       </td>
 
       <td class="product-quantity">
-        <div class="quantity buttons_added">
           <%= meal.quantity %>
-        </div>
       </td>
 
       <td class="product-subtotal">
         <span class="amount">RM<%=meal.price*=meal.quantity.to_i%></span>
+      </td>
+      <td class="product-subtotal">
+        <%=meal.price*=meal.quantity.to_i%>
       </td>
     </tr>
     <%end%>

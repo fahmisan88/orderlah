@@ -27,4 +27,5 @@ class CartsController < ApplicationController
     @cart.delete params[:id]
   end
 
+
 end

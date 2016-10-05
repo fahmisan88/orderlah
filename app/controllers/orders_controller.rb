@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
   before_action :get_amount
+
   def index
-    @orders = Order.all
+    @orders = Order.where(user: current_user)
+
   end
 
   def new
