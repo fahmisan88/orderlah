@@ -67,3 +67,60 @@ input[type="search"] {
 	margin-top:15px;
 	margin-bottom:15px;
 }
+
+.hero-title{
+  color: white;
+  font-size: 60px;
+}
+
+.hero-text{
+  color: white;
+  font-size: 20px;
+}
+
+.steps-how li{
+    float: left;
+    width: 25%;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    color: #333;
+    word-break: break-all;
+    position: relative;
+    min-height: 83px;
+    margin: 20px 0;
+
+  }
+
+.steps-how ul{
+    list-style: none;
+}
+
+.steps{
+  background-color: #dedede;
+}
+
+.footer-top-area{
+  background-color: rgba(92, 184, 92, 1);
+
+}
+
+.footer-bottom-area{
+  background-color: black;
+  color: white;
+}
+
+.top-padding{
+  padding-top: 80px;
+}
+
+.section-banner{
+  display: flex;
+  height: 300px;
+  align-items: center;
+}
+
+.image-vendor{
+  float: left;
+}

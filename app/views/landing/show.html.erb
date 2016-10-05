@@ -5,10 +5,11 @@
     <div class="container">
       <div class="row">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<span class="intro-text-small text-xs-center">This App Will Make You More Lazy</span>
-							<h1 class="cursive-font text-xs-center">All in good taste!</h1>
+							<h1 class="cursive-font text-xs-center hero-title">Order food and go pickup!</h1>
+              <span class="intro-text-small text-xs-center hero-text">No more waiting, just order food from your favourite restaurants online!</span>
 						</div>
 		      </div>
+          <br>
       <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8 animate-box text-xs-center" data-animate-effect="fadeInUp">
@@ -31,39 +32,85 @@
   </div>
 <!--  Hero end  -->
 <!--  Order steps start  -->
-  <div class="section">
+  <div class="section steps">
       <div class="container">
-          <div class="title">
-              Get your favourite food in 4 simple steps. <button class="btn" data-toggle="collapse" data-target="#steps-how">See how</button>
+          <div class="title text-xs-center">
+            <br>
+              <h2>Get your favourite food in 4 simple steps</h2>
           </div>
-          <div class="collapse" id="steps-how">
+          <div class="steps-how">
               <ul>
               <li class="step one">
                   <div>
-                      <div class="title">1. Search</div>
-                      <div class="description">Find restaurants that deliver to you by entering your address</div>
+                      <div><img src="<%=asset_path('search.png')%>" alt="" width="80" height="80"></div>
+                      <div class="step-title"><strong>1. Search</strong></div>
+                      <br>
+                      <div class="description">Find your favourite restaurant anywhere you want</div>
                   </div>
               </li>
               <li class="step two">
                   <div>
-                      <div class="title">2. Choose</div>
+                      <div><img src="<%=asset_path('order.png')%>" alt="" width="80" height="80"></div>
+                      <div class="step-title"><strong>2. Choose</strong></div>
+                      <br>
                       <div class="description">Browse hundreds of menus to find the food you like</div>
                   </div>
               </li>
               <li class="step three">
                   <div>
-                      <div class="title">3. Pay</div>
-                      <div class="description">Pay fast &amp; secure online or on delivery</div>
+                      <div><img src="<%=asset_path('pickup.png')%>" alt="" width="80" height="80"></div>
+                      <div class="step-title"><strong>3. Pickup</strong></div>
+                      <br>
+                      <div class="description">Go pickup your food in 20 minutes or set when to pick</div>
                   </div>
               </li>
               <li class="step four">
-                  <div>
-                      <div class="title">4. Enjoy</div>
-                      <div class="description">Food is prepared &amp; delivered to your door</div>
-                  </div>
+                <div>
+                  <div><img src="<%=asset_path('pay.png')%>" alt="" width="80" height="80"></div>
+                  <div class="step-title"><strong>4. Pay</strong></div>
+                  <br>
+                  <div class="description">Only pay during pickup, no advance payment required</div>
+                </div>
               </li>
           </ul>
           </div>
       </div>
   </div>
+
+  <div class="section steps-how">
+    <div class="container">
+      <div class="title text-xs-center">
+        <br>
+          <h2>Our partnering restaurants</h2>
+          <ul>
+          <% @restaurants.each do |restaurant| %>
+          <li><img src="<%=restaurant.profile_image%>" alt="" width="100" height="100"></li>
+          <% end %>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+
+<div class="footer-bottom-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="copyright">
+          <p>&copy; 2016 Orderlah. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by FSWD MaGIC Academy </a></p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="footer-card-icon">
+          <i class="fa fa-cc-discover"></i>
+          <i class="fa fa-cc-mastercard"></i>
+          <i class="fa fa-cc-paypal"></i>
+          <i class="fa fa-cc-visa"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!--  Order steps end  -->
