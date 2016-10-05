@@ -1,15 +1,41 @@
-<% if user_signed_in? %>
-  <li><%= link_to "Apply to open a Restaurant" %></li>
-  <li><%= link_to "View All Restaurants", restaurants_path %></li>
-  <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-  <li>User Id: <%= current_user.id %></li>
-  <li>User Id: <%= current_user.email %></li>
-  <li>User Id: <%= current_user.role %></li>
-  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-<% else %>
-  <li><%= link_to "Sign In", new_user_session_path %></li>
-  <li><%= link_to "Sign Up", new_user_registration_path %></li>
-<% end %>
+<%= render '/layouts/navbar' %>
+
+<div class="container">
+	<div class="row">
+		<div class="list-group">
+            <div class="list-group-item clearfix">
+                <div class="profile-teaser-left">
+                    <div class="profile-img"><img src="https://static.pexels.com/photos/21011/pexels-photo-large.jpg"/></div>
+                </div>
+                <div class="profile-teaser-main">
+                    <h2 class="profile-name">Jane Doe</h2>
+                    <div class="profile-info">
+                        <div class="info"><span class="">Info:</span> Something here</div>
+                        <div class="info"><span class="">Info:</span> Something here</div>
+                        <div class="info"><span class="">Info:</span> Something here</div>
+                        <div class="info"><span class="">Info:</span> Something here</div>
+                    </div>
+                </div>
+            </div><!-- item -->
+
+            <div class="list-group-item clearfix">
+                <div class="profile-teaser-left">
+                    <div class="profile-img"><img src="https://static.pexels.com/photos/21011/pexels-photo-large.jpg"/></div>
+                </div>
+                <div class="profile-teaser-main">
+                    <h2 class="profile-name">Jane Doe</h2>
+                    <div class="profile-info">
+                        <div class="info"><span class="">Info:</span> Something here</div>
+                        <div class="info"><span class="">Info:</span> Something here</div>
+                        <div class="info"><span class="">Info:</span> Something here</div>
+                        <div class="info"><span class="">Info:</span> Something here</div>
+                    </div>
+                </div>
+            </div><!-- item -->
+        </div>
+	</div>
+</div>
+
 
 <div align="center">
   <h2><%= image_tag @restaurant.profile_image.thumb %></h2>
