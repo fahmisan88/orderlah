@@ -2,26 +2,24 @@
   <a class="navbar-brand" href="#"><div class="logo"><%= image_tag 'logo-inverse.png', width: '100px', height: '35px'  %></div></a>
 <% if user_signed_in? %>
 <ul class="nav navbar-nav pull-right">
-  <li class="nav-item"><%= link_to "Apply to open a Restaurant", new_restaurant_application_path, class: "nav-link" %></li>
-  <li class="nav-item"><%= link_to "View My Restaurant Application", restaurant_applications_path, class: "nav-link" %></li>
-  <li class="nav-item"><%= link_to "View All Restaurants", restaurants_path, class: "nav-link" %></li>
-  <li class="nav-item"><%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link" %></li>
-
-  <li class="nav-item">User Id: <%= current_user.id %></li>
-  <li class="nav-item">User Id: <%= current_user.email %></li>
-  <li class="nav-item">User Id: <%= current_user.role %></li>
-
-  <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, class: "nav-link", method: :delete %></li>
+  <div class="dropdown">
+    <li class="nav-item dropdown-toggle" data-toggle="dropdown"><%= current_user.email %></li>
+    <div class="dropdown-menu dropdown-menu-right">
+    <span class="dropdown-item">Role as <%= current_user.role %></span>
+    <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+    <%= link_to "Sign Out", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+    <div class="dropdown-divider"></div>
+    <%= link_to "Apply to open a Restaurant", new_restaurant_application_path, class: "dropdown-item" %>
+    <%= link_to "View My Restaurant Application", restaurant_applications_path, class: "dropdown-item" %>
+  </div>
+  </div>
 </ul>
+
 <% else %>
   <ul class="nav navbar-nav pull-right">
     <li class="nav-item">
-      <!-- <%= link_to "Sign In", new_user_session_path, class: "nav-link" %> -->
-      <a href="javascript:;" data-toggle="modal" data-target="#loginModal">Login or Sign Up</a>
+      <a href="#" data-toggle="modal" data-target="#loginModal">Login or Sign Up</a>
     </li>
-    <!-- <li class="nav-item">
-      <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
-    </li> -->
   </ul>
 
 <% end %>

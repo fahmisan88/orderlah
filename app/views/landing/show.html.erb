@@ -13,10 +13,6 @@
             <div class="col-md-2"></div>
             <div class="col-md-8 animate-box text-xs-center" data-animate-effect="fadeInUp">
                 <div class="input-group input-group-lg" id="front-page-search">
-                  <span class="input-group-btn">
-                    <button class="btn btn-success" type="button">Find Food</button>
-                  </span>
-
                       <%= form_tag(restaurants_path, method: "get", id: "search-form") do |f| %>
                       <%= search_field_tag :search, params[:search], placeholder: "Search Restaurants", class: "form-control" %>
 

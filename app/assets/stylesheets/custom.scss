@@ -32,36 +32,18 @@
   justify-content : center;
 }
 
-.login-tab {
-	margin: 0 auto;
-	max-width: 380px;
+.nav-item {
+  cursor: pointer;
 }
 
-.login-modal-header {
-	background: #27ae60;
-	color: #fff;
+input[type="search"] {
+  height: 52px;
 }
 
-.login-modal-header .modal-title {
-	color: #fff;
+.modal-header {
+  background-color: rgb(92, 184, 92);
 }
 
-.login-modal-header .close {
-	color: #fff;
-}
-
-.login-modal i {
-	color: #000;
-}
-
-.login-modal form {
-	max-width: 340px;
-}
-
-.tab-pane form {
-	margin: 0 auto;
-}
-.login-modal-footer{
-	margin-top:15px;
-	margin-bottom:15px;
+.modal-title {
+  color: #ffffff;
 }

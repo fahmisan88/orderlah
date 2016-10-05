@@ -1,41 +1,24 @@
-var loginmodal = function() {
-  console.log("loginmodal");
-  $('.signup-tab').live('click', function(e){
-    e.preventDefault();
-    $('#signup-taba').tab('show');
-  });
+;(function () {
 
-  $('.signin-tab').live('click', function(e){
-    console.log("signin-tab");
-    e.preventDefault();
-    $('#signin-taba').tab('show');
-  });
+  'use strict';
 
-  $(".forgetpass-tab").live('click', function(e){
-    console.log("forgot!!!");
-    e.preventDefault();
-    $('#forgetpass-taba').tab('show');
-  });
-}
+  var videobg = function() {
+    $('#videobg').vide({
+      mp4: '<%= asset_path("food.mp4") %>',
+      webm: '<%= asset_path("food.webm") %>',
+      ogv: '<%= asset_path("food.ogv") %>',
+      poster: '<%= asset_path("food.jpg") %>'
+    }, {
+      volume: 1,
+      playbackRate: 1,
+      muted: true,
+      loop: true,
+      autoplay: true,
+      posterType: 'detect'
+    });
+  }
 
-var videobg = function() {
-  $('#videobg').vide({
-    mp4: '<%= asset_path("food.mp4") %>',
-    webm: '<%= asset_path("food.webm") %>',
-    ogv: '<%= asset_path("food.ogv") %>',
-    poster: '<%= asset_path("food.jpg") %>'
-  }, {
-    volume: 1,
-    playbackRate: 1,
-    muted: true,
-    loop: true,
-    autoplay: true,
-    posterType: 'detect'
-  });
-}
-
-$(document).ready(function() {
-  console.log("load!!!");
-  videobg();
-  loginmodal();
-});
+  $(function(){
+            videobg();
+	  });
+}());

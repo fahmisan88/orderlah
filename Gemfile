@@ -20,9 +20,10 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.2', '>= 4.2.1'
+# gem 'jquery-rails', '~> 4.2', '>= 4.2.1'
+# gem 'rails-assets-bootstrap', source: 'https://rails-assets.org'
 
-gem 'bootstrap'
+# gem 'bootstrap'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -31,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+# gem 'rails-assets-fontawesome', source: 'https://rails-assets.org'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
