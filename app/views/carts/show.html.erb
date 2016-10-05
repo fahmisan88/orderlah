@@ -23,7 +23,7 @@
     <% restaurant[:meals].each do |meal|%>
     <tr>
       <td><%= link_to "x", remove_meal_path(id: meal), method: :delete, title: "Remove this meal", class: "remove" %></td>
-      <td><%= image_tag meal.image%></td>
+      <td><%= image_tag meal.image.thumb%></td>
       <td><%= meal.name %></td>
       <td><%= number_to_currency(meal.price, :unit => 'RM') %></td>
       <td>

@@ -23,7 +23,9 @@
 
     <% restaurant[:meals].each do |meal| %>
     <tr class="cart_item">
-
+      <td class="product-thumbnail">
+        <a><%= image_tag meal.image.thumb, alt:"",class:"product-thumb"%></a>
+      </td>
       <td class="product-name">
         <%= meal.name%>
       </td>
