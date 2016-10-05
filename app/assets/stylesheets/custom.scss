@@ -32,18 +32,20 @@
   justify-content : center;
 }
 
-.login-tab {
-	margin: 0 auto;
-	max-width: 380px;
+.nav-item {
+  cursor: pointer;
 }
 
-.login-modal-header {
-	background: #27ae60;
-	color: #fff;
+input[type="search"] {
+  height: 52px;
 }
 
-.login-modal-header .modal-title {
-	color: #fff;
+.modal-header {
+  background-color: rgb(92, 184, 92);
+}
+
+.modal-title {
+  color: #ffffff;
 }
 
 .login-modal-header .close {
