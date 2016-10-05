@@ -1,17 +1,6 @@
-<% if user_signed_in? %>
-<li><%= link_to "Apply to open a Restaurant", new_restaurant_application_path %></li>
-<li><%= link_to "View My Restaurant Application", restaurant_applications_path %></li>
-<li><%= link_to "View All Restaurants", restaurants_path %></li>
-<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-<li>User Id: <%= current_user.id %></li>
-<li>User Id: <%= current_user.email %></li>
-<li>User Id: <%= current_user.role %></li>
 
-<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-<% else %>
-<li><%= link_to "Sign In", new_user_session_path %></li>
-<li><%= link_to "Sign Up", new_user_registration_path %></li>
-<% end %>
+<%= render '/layouts/navbar' %>
+
 
 
 <h1>Restaurant list</h1>
@@ -20,40 +9,30 @@
   <%= link_to "New Restaurant", new_restaurant_path, class:"btn btn-primary" %>
 <% end%>
 <p>
-
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Restaurant Image</th>
-      <th>Restaurant Name</th>
-      <th>Description</th>
-      <!-- <th>Owner</th> -->
-
-      <!-- <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Postcode</th> -->
-    </tr>
-  </thead>
-
-  <tbody>
   <% @restaurants.each do |restaurant| %>
-  <tr>
-    <td><%= image_tag restaurant.profile_image.thumb %></td>
-    <td><%=link_to restaurant.name, restaurant_path(restaurant)%></td>
-    <td><%=restaurant.description%></td>
-    <!-- <td>< %= restaurant.user.email %></td> -->
-    <!-- <td>< %=restaurant.address%></td> -->
-    <!-- <td>< %=restaurant.city%></td> -->
-    <!-- <td>< %=restaurant.state%></td> -->
-    <!-- <td>< %=restaurant.postcode%></td> -->
+  <article class="list-group container">
+    <li class="list-group-item">
+      <div class >
+        <img src="<%=restaurant.profile_image%>" alt="" width="80" height="80">
+        <span>
+          <%=restaurant.name%>
+        </span>
+        <span class = "pull-xs-right">
+          Pickup in 20 minutes
+        </span>
+        <span>
+          <% if current_user&.admin? || current_user&.restaurant_owner? %>
+          <% if current_user == restaurant.user %>
 
-    <% if current_user&.admin? || current_user&.restaurant_owner? %>
-      <% if current_user == restaurant.user %>
-        <td><%= link_to "EDIT", edit_restaurant_path(restaurant), class:"btn btn-success" %></td>
-        <td><%= link_to "DELETE", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td>
-      <% end %>
-    <% end %>
 
-  </tr>
+          <%= link_to "", edit_restaurant_path(restaurant), class:"fa fa-pencil"%>
+
+          <%= link_to "", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" }, class:"fa fa-trash-o" %>
+          <% end %>
+          <% end %>
+        </span>
+      </div>
+
+    </li>
+  </article>
   <% end%>
