@@ -1,17 +1,5 @@
-<% if user_signed_in? %>
-<li><%= link_to "Apply to open a Restaurant", new_restaurant_application_path %></li>
-<li><%= link_to "View My Restaurant Application", restaurant_applications_path %></li>
-<li><%= link_to "View All Restaurants", restaurants_path %></li>
-<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-<li>User Id: <%= current_user.id %></li>
-<li>User Id: <%= current_user.email %></li>
-<li>User Id: <%= current_user.role %></li>
+<%= render '/layouts/navbar' %>
 
-<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-<% else %>
-<li><%= link_to "Sign In", new_user_session_path %></li>
-<li><%= link_to "Sign Up", new_user_registration_path %></li>
-<% end %>
 
 
 <h1>My Restaurant Application</h1>
@@ -51,10 +39,7 @@
       <% end %>
     </td>
     <td><%= restaurant_application.application_status %></td>
-
     <!-- <td>< %= restaurant_application.user.email %></td> -->
-
-
    <!-- <td><%= link_to "EDIT", edit_restaurant_application_path(restaurant_application), class:"btn btn-success" %></td>
     <td><%= link_to "DELETE", restaurant_application_path(restaurant_application), method: :delete, data: { confirm: "Delete?" } , class:"btn btn-danger" %></td> -->
 
