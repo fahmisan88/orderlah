@@ -8,10 +8,14 @@ class RestaurantsController < ApplicationController
 
     if params[:search]
       Restaurant.reindex
+      if params[:search].empty?
+        redirect_to restaurants_path
+      elsif
       @restaurants = Restaurant.search(params[:search], field:[{city: :word_start}])
     else
       @restaurants = Restaurant.all.order(created_at: :desc)
     end
+  end
   end
 
   def show

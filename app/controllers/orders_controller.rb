@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
   before_action :get_amount
+
   def index
     @orders = Order.where(user: current_user)
+
   end
 
   def restaurant_orders
@@ -14,6 +16,7 @@ class OrdersController < ApplicationController
 
 
     # @orders = Order.where(restaurant: current_user.restaurant_id)
+
   end
 
   def new

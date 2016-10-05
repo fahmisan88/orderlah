@@ -1,10 +1,12 @@
-<h2>Your Order</h2>
+<h2>Review Order</h2>
 <br>
 <% if @restaurants.empty? %>
-<h2>Your Cart Is Currently Empty</h2>
+<h2>Your Order List Is Currently Empty</h2>
 <% else %>
 <% @restaurants.each do |restaurant_id, restaurant|%>
 <h2><%= restaurant[:name] %></h2>
+<div class= "container">
+  <div class="pull-xs-left">
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -45,6 +47,34 @@
     </tr>
   </tbody>
 </table>
+</div>
+<div class= "pull-xs-right">
+  Order Information
+  <div class="form-group">
+  <span class= "pull-xs-left">
+    <label for="sel1">Select Date Time</label>
+    <select class="form-control" id="sel1">
+      <option><%= Date.current %></option>
+      <option><%= Date.current+1 %></option>
+      <option><%= Date.current+2 %></option>
+      <option><%= Date.current+3 %></option>
+    </select>
+  </span>
+
+    <span class= "pull-xs-right">
+    <label for="sel1">Select Pickup Time</label>
+    <select class="form-control" id="sel1">
+      <option><%=(Time.now.advance(:hours => +1).beginning_of_hour).strftime("%H:%M")%></option>
+      <option><%=(Time.now.advance(:hours => +2).beginning_of_hour).strftime("%H:%M")%></option>
+      <option><%=(Time.now.advance(:hours => +3).beginning_of_hour).strftime("%H:%M")%></option>
+      <option><%=(Time.now.advance(:hours => +4).beginning_of_hour).strftime("%H:%M")%></option>
+      <option><%=(Time.now.advance(:hours => +5).beginning_of_hour).strftime("%H:%M")%></option>
+      <option><%=(Time.now.advance(:hours => +6).beginning_of_hour).strftime("%H:%M")%></option>
+    </select>
+    </span>
+  </div>
+</div>
+</div>
 <% end %>
 <% end %>
 <span>
