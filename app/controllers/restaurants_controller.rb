@@ -19,9 +19,11 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    # @restaurants = Restaurant.all
     @restaurant = Restaurant.find_by(id: params[:id])
     @meals = Meal.where(restaurant_id: params[:id]) #--> you can use this code if there is no association between models
   end
+
 
   def new
     @restaurant = Restaurant.new

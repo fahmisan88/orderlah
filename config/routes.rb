@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: 'users/sessions' }
   get :user_page, to: 'static_pages#user_page'
-
   get :restaurant_orders, to: "orders#restaurant_orders"
   get :cart, to: "carts#show"
   post :add_meal, to: "carts#add_meal"

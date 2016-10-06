@@ -8,11 +8,11 @@ class OrdersController < ApplicationController
 
   def restaurant_orders
 
-    @orders = Order.all
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+    @orders = @restaurant.orders
 
     # @restaurant = Restaurant.find_by(id: params[:id])
     # @orders = Order.where(restaurant_id: params[:id]) #--> you can use this code if there is no association between models
-    # binding.pry
 
 
     # @orders = Order.where(restaurant: current_user.restaurant_id)
