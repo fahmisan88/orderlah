@@ -2,21 +2,13 @@ class OrdersController < ApplicationController
   before_action :get_amount
 
   def index
-    @orders = Order.where(user: current_user)
-
+    @orders = current_user.orders
   end
 
   def restaurant_orders
-
-    @orders = Order.all
-
-    # @restaurant = Restaurant.find_by(id: params[:id])
-    # @orders = Order.where(restaurant_id: params[:id]) #--> you can use this code if there is no association between models
-    # binding.pry
-
-
-    # @orders = Order.where(restaurant: current_user.restaurant_id)
-
+    # @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+    @restaurant = Restaurant.find_by(id: params[:id])
+    @orders = @restaurant.orders
   end
 
   def new

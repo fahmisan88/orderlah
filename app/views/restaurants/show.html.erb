@@ -46,6 +46,7 @@
 
 <div class = "meals">
 <%= link_to "Back to Restaurant", restaurants_path, class:"btn btn-primary" %>
+<%= link_to "Restaurant Order", restaurant_orders_path(@orders), class:"btn btn-primary" %>
 
 <% if current_user&.restaurant_owner? %>
   <% if current_user == @restaurant.user %>

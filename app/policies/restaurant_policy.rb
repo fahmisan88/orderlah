@@ -1,10 +1,14 @@
 class RestaurantPolicy < ApplicationPolicy
 
   def new?
-    user.present? && user.restaurant_owner?    
+    user.present? && user.restaurant_owner?
   end
 
   def create?
+    new?
+  end
+
+  def dashboard?
     new?
   end
 
