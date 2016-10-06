@@ -3,10 +3,10 @@ class RestaurantsController < ApplicationController
 
   def dashboard
     @restaurants = current_user.restaurants
+    authorize @restaurants
   end
 
   def index
-
     @restaurants = Restaurant.all
 
     if params[:search]

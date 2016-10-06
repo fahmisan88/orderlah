@@ -12,9 +12,8 @@ class OrdersController < ApplicationController
     @restaurant = @order.restaurant
 
     if @order.update(order_params)
-    redirect_to restaurant_orders_path(restaurant_id: @restaurant.id), notice: 'Order status was successfully updated.'
-
-  end
+      redirect_to restaurant_orders_path(restaurant_id: @restaurant.id), notice: 'Order status was successfully updated.'
+    end
   end
 
   def index
@@ -39,43 +38,43 @@ class OrdersController < ApplicationController
         :total => restaurant[:total],
         :restaurant_id => restaurant_id})
 
-      restaurant[:meals].each do |meal|
-        @order.ordered_meals.build( {:meal_id => meal.id, :quantity => meal.quantity })
+        restaurant[:meals].each do |meal|
+          @order.ordered_meals.build( {:meal_id => meal.id, :quantity => meal.quantity })
+        end
+
+        if !@order.save
+          break
+        end
       end
 
-      if !@order.save
-        break
+      cookies.delete(:cart)
+      redirect_to orders_path
+    end
+
+    private
+
+    def get_amount
+      if cookies[:cart]
+        @cart = JSON.parse(cookies[:cart])
+      else
+        @cart = {}
+      end
+
+      @meals = []
+      @total_price = 0.0;
+
+      @cart.each do |meal_id,quantity|
+        meal = Meal.find_by(id: meal_id)
+        meal.define_singleton_method(:quantity) { quantity }
+        price = meal.price * quantity.to_f
+        @total_price += price
+        @meals << meal
       end
     end
 
-    cookies.delete(:cart)
-    redirect_to orders_path
-  end
-
-  private
-
-  def get_amount
-    if cookies[:cart]
-      @cart = JSON.parse(cookies[:cart])
-    else
-      @cart = {}
+    def order_params
+      params.require(:order).permit(:status)
     end
 
-    @meals = []
-    @total_price = 0.0;
 
-    @cart.each do |meal_id,quantity|
-      meal = Meal.find_by(id: meal_id)
-      meal.define_singleton_method(:quantity) { quantity }
-      price = meal.price * quantity.to_f
-      @total_price += price
-      @meals << meal
-    end
   end
-
-  def order_params
-    params.require(:order).permit(:status)
-  end
-
-
-end
