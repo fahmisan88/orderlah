@@ -11,6 +11,24 @@
   font-style:normal;
 }
 
+@font-face {
+  font-family:"Fabrica";
+  src:font-url("Fabrica.eot?") format("eot"),
+  font-url("Fabrica.woff") format("woff"),
+  font-url("Fabrica.ttf") format("truetype"),
+  font-url("Fabrica.svg#Fabrica") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
+body {
+  font-family: "Fabrica";
+}
+
+h1, h2, h3, h4 {
+  font-family: "Aller Display";
+}
+
 .vertical-center {
   display: -webkit-box;
   display: -moz-box;
