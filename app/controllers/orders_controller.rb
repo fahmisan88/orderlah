@@ -1,5 +1,22 @@
 class OrdersController < ApplicationController
+  before_filter :authenticate_user!
   before_action :get_amount
+
+  def edit
+    @order = Order.find_by(id: params[:id])
+  end
+
+  def update
+    @order = Order.find_by(id: params[:id])
+    # @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+
+# binding.pry
+    if @order.update(order_params)
+      redirect_to dashboard_path, notice: 'Order status was successfully updated.'
+      # redirect_to restaurant_orders_path(restaurant_id: restaurant.id), notice: 'Order status was successfully updated.'
+
+  end
+  end
 
   def index
     @orders = current_user.orders
@@ -37,6 +54,7 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def get_amount
     if cookies[:cart]
       @cart = JSON.parse(cookies[:cart])
@@ -54,6 +72,10 @@ class OrdersController < ApplicationController
       @total_price += price
       @meals << meal
     end
+  end
+
+  def order_params
+    params.require(:order).permit(:status)
   end
 
 

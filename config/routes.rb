@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post :add_meal, to: "carts#add_meal"
   delete :remove_meal, to: "carts#remove_meal"
   post :update_meal, to: "carts#update_meal"
-  resources :orders, only: [:index, :new, :create, :show]
+  resources :orders
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :restaurants do

@@ -1,0 +1,29 @@
+<%= render '/layouts/navbar' %>
+<div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
+  <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+    <h1 class="cursive-font text-xs-center hero-title">Edit Order</h1>
+    <span class="intro-text-small text-xs-center hero-text">Order ID: <%= @order.id %></span>
+  </div>
+</div>
+
+<div class="section top-padding">
+  <div class="container">
+
+  <%= form_for @order do |f| %>
+    <div>
+      <%= f.label :status %>
+      <%= f.select :status, [ 'Received', 'Processing', 'Completed' ], :prompt => 'Select One', class:"form-control" %>
+    </div>
+    <P>
+    <div>
+      <%= f.submit class:"btn btn-success" %>
+    </div>
+  <% end %>
+
+<%= link_to 'Show', @restaurant, class:"btn btn-link" %> |
+<%= link_to 'Back', restaurants_path, class:"btn btn-link" %>
+
+</div>
+</div>
+<%= render 'layouts/footer' %>
