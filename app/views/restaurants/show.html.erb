@@ -1,90 +1,62 @@
 <%= render '/layouts/navbar' %>
+<div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
+	<div class="background-image" style="background-image: url(<%=@restaurant.banner_image%>);"></div>
+	<!-- <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+	<h1 class="cursive-font text-xs-center hero-title">Order food and go pickup!</h1>
+	<span class="intro-text-small text-xs-center hero-text">No more waiting, just order food from your favourite restaurants online!</span>
+</div> -->
 
-<div class="container">
-	<div class="row">
-		<div class="list-group">
-            <div class="list-group-item clearfix">
-                <div class="profile-teaser-left">
-                    <div class="profile-img"><img src="https://static.pexels.com/photos/21011/pexels-photo-large.jpg"/></div>
-                </div>
-                <div class="profile-teaser-main">
-                    <h2 class="profile-name">Jane Doe</h2>
-                    <div class="profile-info">
-                        <div class="info"><span class="">Info:</span> Something here</div>
-                        <div class="info"><span class="">Info:</span> Something here</div>
-                        <div class="info"><span class="">Info:</span> Something here</div>
-                        <div class="info"><span class="">Info:</span> Something here</div>
-                    </div>
-                </div>
-            </div><!-- item -->
+<div class="vendor-image-top" align="center"><img src="<%= @restaurant.profile_image.thumb %>" alt=""  width="82" height="82">
 
-            <div class="list-group-item clearfix">
-                <div class="profile-teaser-left">
-                    <div class="profile-img"><img src="https://static.pexels.com/photos/21011/pexels-photo-large.jpg"/></div>
-                </div>
-                <div class="profile-teaser-main">
-                    <h2 class="profile-name">Jane Doe</h2>
-                    <div class="profile-info">
-                        <div class="info"><span class="">Info:</span> Something here</div>
-                        <div class="info"><span class="">Info:</span> Something here</div>
-                        <div class="info"><span class="">Info:</span> Something here</div>
-                        <div class="info"><span class="">Info:</span> Something here</div>
-                    </div>
-                </div>
-            </div><!-- item -->
-        </div>
-	</div>
+</div>
 </div>
 
-
-<div align="center">
-  <h2><%= image_tag @restaurant.profile_image.thumb %></h2>
-  <h2><%= @restaurant.name %></h2>
-  <h5><%= @restaurant.full_address %></h5>
-  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=300x200&sensor=false&zoom=16&markers=#{@restaurant.latitude}%2C#{@restaurant.longitude}" %>
+<div class ="section text-xs-center">
+	<div class="container-fluid2" align="center"><h5><%= @restaurant.name %></h5> <p class="text-xs-center"><%= @restaurant.full_address %></p></div>
+	<%= image_tag "http://maps.google.com/maps/api/staticmap?size=300x200&sensor=false&zoom=16&markers=#{@restaurant.latitude}%2C#{@restaurant.longitude}" %>
 </div>
+<br>
+<div class ="container">
+	<div class ="pull-xs-left">
+	<ul class="list-group container-meal">
+		<% @restaurant.meals.each do |meal|%>
+		<li class="list-group-item" style="height: 85px; padding: 10px 15px; width: 800px;">
+			<img src="<%=meal.image%>" alt="" width="80" height="65" class="pull-xs-left">
+			<div style="height: 85px; padding: 15px 15px;">
+				<span class="pull-xs-left">&nbsp; &nbsp;</span>
 
+			<%=meal.name%><span class="pull-xs-right"><%= link_to '', add_meal_path(id: meal, quantity: 1), method: :post, class:"fa fa-plus-circle" %></span><span class="pull-xs-right">&nbsp; &nbsp;</span><span class="pull-xs-right">RM <%=meal.price%></span>
+
+			<span class="pull-xs-left">
+				<% if current_user&.admin? || current_user&.restaurant_owner? %>
+				<% if current_user == @restaurant.user %>
+				<span><%= link_to "", edit_restaurant_meal_path(@restaurant, meal), class:"fa fa-pencil" %></span>
+				<span><%= link_to "", restaurant_meal_path(@restaurant, meal), method: :delete, data: { confirm: "Delete?" }, class:"fa fa-trash-o"  %></span>
+				<% end %>
+				<% end %>
+			</span>
+		</div>
+		</li>
+	</ul>
+	<% end %>
+</div>
+<div class= "card pull-xs-right" style="height: 300px; padding: 10px 15px; max-width: 300px;">
+  <div class="card-block">
+    <h4 class="card-title">Steps To Order</h4>
+    <p class="card-text">Click (+) button to add meal in your order list. To add quantity of the same meal click (+) again.</p>
+    <a><%= link_to "Go To Order", cart_path, class:"btn btn-primary" %></a>
+  </div>
+</div>
+</div>
+<br>
 <div class = "meals">
+
 <%= link_to "Back to Restaurant", restaurants_path, class:"btn btn-primary" %>
-<%= link_to "Restaurant Order", restaurant_orders_path(@restaurant), class:"btn btn-primary" %>
 
-<% if current_user&.restaurant_owner? %>
-  <% if current_user == @restaurant.user %>
-    <%= link_to "New Meal", new_restaurant_meal_path(@restaurant), class:"btn btn-primary" %>
-  <% end %>
-<% end %>
-<p>
-<div class= "container pull-xs-left">
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Meal</th>
-      <th>Price</th>
-      <th>Select</th>
-      <!-- <th>Restaurant Owner</th> -->
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @restaurant.meals.each do |meal|%>
-    <tr>
-      <td><%= image_tag meal.image.thumb %></td>
-      <td><%= meal.name%></td>
-      <td><%= meal.price %></td>
-      <td><%= link_to 'Add', add_meal_path(id: meal, quantity: 1), method: :post %></td>
-      <!-- <td>< %= meal.restaurant.user.email %></td> -->
-
-      <% if current_user&.admin? || current_user&.restaurant_owner? %>
-        <% if current_user == @restaurant.user %>
-          <td><%= link_to "EDIT", edit_restaurant_meal_path(@restaurant, meal), class:"btn btn-success" %></td>
-          <td><%= link_to "DELETE", restaurant_meal_path(@restaurant, meal), method: :delete, data: { confirm: "Delete?" }, class:"btn btn-danger" %></td>
-        <% end %>
-      <% end %>
-    </tr>
-    <%end%>
-  </tbody>
-</table>
-<%= link_to "Go To Order", cart_path, class:"btn btn-primary" %>
+	<% if current_user&.admin? || current_user&.restaurant_owner? %>
+	<% if current_user == @restaurant.user %>
+	<%= link_to "Add Meal", new_restaurant_meal_path(@restaurant), class:"btn btn-primary" %>
+	<% end %>
+	<% end %>
 
 </div>

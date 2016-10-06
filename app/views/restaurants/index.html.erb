@@ -1,12 +1,13 @@
 
 <%= render '/layouts/navbar' %>
-<div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
-  <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
 
-  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-    <h1 class="cursive-font text-xs-center hero-title">Order food and go pickup!</h1>
-    <span class="intro-text-small text-xs-center hero-text">No more waiting, just order food from your favourite restaurants online!</span>
-  </div>
+<div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
+
+<div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+      <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+        <h1 class="cursive-font text-xs-center hero-title">Order food and go pickup!</h1>
+        <span class="intro-text-small text-xs-center hero-text">No more waiting, just order food from your favourite restaurants online!</span>
+      </div>
 
 </div>
 <div class="section top-padding">
@@ -23,7 +24,9 @@
           <div class="vendor-list">
             <img src="<%=restaurant.profile_image%>" alt="" width="80" height="80">
             <span>
+
               <%= link_to restaurant.name, restaurant_path(restaurant) %>
+
             </span>
             <span class = "pull-xs-right">
               Pickup in 20 minutes
