@@ -7,9 +7,7 @@ class OrdersController < ApplicationController
 
   def restaurant_orders
     @restaurant = Restaurant.find_by(id: params[:restaurant_id])
-
     @orders = @restaurant.orders
-
   end
 
   def new
@@ -18,7 +16,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-
     @restaurants = current_order
 
     @restaurants.each do |restaurant_id, restaurant|

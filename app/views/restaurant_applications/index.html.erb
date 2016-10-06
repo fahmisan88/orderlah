@@ -1,17 +1,16 @@
 <%= render '/layouts/navbar' %>
-
 <div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
   <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+    <h1 class="cursive-font text-xs-center hero-title">My Application</h1>
+    <span class="intro-text-small text-xs-center hero-text"> </span>
+  </div>
 </div>
-
-<div class="section top-padding">
-  <div class="container">
 
     <% if @restaurant_applications.empty? %>
     You do not have any application
     <br><br>
     <% else %>
-    <h1>My Application</h1>
 
     <% if current_user&.restaurant_owner? %>
       <% if @restaurant_applications.empty? %>
@@ -57,3 +56,4 @@
         </div>
       </div>
       <% end %>
+      <%= render 'layouts/footer' %>

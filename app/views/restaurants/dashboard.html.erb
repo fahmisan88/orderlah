@@ -1,7 +1,10 @@
 <%= render '/layouts/navbar' %>
-
 <div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
   <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+    <h1 class="cursive-font text-xs-center hero-title">Restaurant Dashboard</h1>
+    <span class="intro-text-small text-xs-center hero-text"> </span>
+  </div>
 </div>
 
 <div class="section top-padding">
@@ -21,15 +24,16 @@
             <span>
               <%= link_to restaurant.name, restaurant_path(restaurant) %>
             </span>
-
             <span>
               <% if current_user&.admin? || current_user&.restaurant_owner? %>
               <% if current_user == restaurant.user %>
               <%= link_to "", edit_restaurant_path(restaurant), class:"fa fa-pencil"%>
               <%= link_to "", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" }, class:"fa fa-trash-o" %>
-
-              <%= link_to "Sale", restaurant_orders_path(restaurant_id: restaurant.id) %>
-
+            </span>
+            <span> | </span>
+            <span>
+              <%= link_to "My Sales", restaurant_orders_path(restaurant_id: restaurant.id) %>
+            </span>
               <% end %>
               <% end %>
             </span>
@@ -40,9 +44,8 @@
       <p>  <p>
 
         <% if current_user&.restaurant_owner? %>
-        <%= link_to "New Restaurant", new_restaurant_path, class:"btn btn-primary" %>
+        <%= link_to "New Restaurant", new_restaurant_path, class:"btn btn-success" %>
         <% end%>
       </div>
     </div>
-    <p>
-      <p>
+    <%= render 'layouts/footer' %>

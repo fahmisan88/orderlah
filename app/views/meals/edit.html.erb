@@ -1,31 +1,42 @@
-<h1>Editing Meal</h1>
-
-<%= form_for(@meal, url: restaurant_meal_path(@restaurant, @meal)) do |f| %>
-
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name, class:"form-control" %>
+<%= render '/layouts/navbar' %>
+<div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
+  <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+    <h1 class="cursive-font text-xs-center hero-title">Edit Meals</h1>
+    <span class="intro-text-small text-xs-center hero-text">For Restaurant: <%= @restaurant.name %> </span>
   </div>
+</div>
 
-  <div>
-    <%= f.label :description %>
-    <%= f.text_area :description, class:"form-control" %>
+<div class="section top-padding">
+  <div class="container">
+    <%= form_for(@meal, url: restaurant_meal_path(@restaurant, @meal)) do |f| %>
+
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+
+    <div>
+      <%= f.label :description %>
+      <%= f.text_area :description, class:"form-control" %>
+    </div>
+
+    <div>
+      <%= f.label :price %>
+      <%= f.text_field :price, class:"form-control" %>
+    </div>
+
+    <div>
+      <%= f.label :image %>
+      <%= f.file_field :image, class:"form-control" %>
+    </div>
+    <p>
+    <div>
+      <%= link_to 'Back', restaurants_path, class:"btn btn-success" %>
+      <%= f.submit class:"btn btn-success" %>
+    </div>
+    <% end %>
   </div>
+</div>
 
-  <div>
-    <%= f.label :price %>
-    <%= f.text_field :price, class:"form-control" %>
-  </div>
-
-  <div>
-    <%= f.label :image %>
-    <%= f.file_field :image, class:"form-control" %>
-  </div>
-
-  <div>
-    <%= f.submit class:"btn btn-success" %>
-  </div>
-
-<% end %>
-
-<%= link_to 'Back', restaurants_path, class:"btn btn-link" %>
+<%= render 'layouts/footer' %>

@@ -1,5 +1,20 @@
-<h1>New restaurant</h1>
+<%= render '/layouts/navbar' %>
+<div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
+  <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+    <h1 class="cursive-font text-xs-center hero-title">New Restaurant</h1>
+    <span class="intro-text-small text-xs-center hero-text"> </span>
+  </div>
+</div>
 
-<%= render 'form', restaurant: @restaurant %>
+<div class="section top-padding">
+  <div class="container">
 
-<%= link_to 'Back', restaurants_path %>
+  <%= render 'form', restaurant: @restaurant %>
+  <p><p>
+
+  <%= link_to 'Back', dashboard_path, class:"btn btn-success" %>
+
+</div>
+</div>
+<%= render 'layouts/footer' %>
