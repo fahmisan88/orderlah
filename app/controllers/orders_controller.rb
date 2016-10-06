@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!
   before_action :get_amount
 
+  before_action :load_split_cart, only: [:splitorder]
+
   def edit
     @order = Order.find_by(id: params[:id])
     @restaurant = @order.restaurant
@@ -28,6 +30,19 @@ class OrdersController < ApplicationController
   def new
     @restaurants = current_order
     # @order = Order.new
+  end
+
+  def splitorder
+    @meals = []
+
+        @cart.each do |meal_id,quantity|
+          meal = Meal.find_by(id: meal_id)
+          meal.define_singleton_method(:quantity) do
+            quantity
+          end
+          @meals << meal
+
+        end
   end
 
   def create
