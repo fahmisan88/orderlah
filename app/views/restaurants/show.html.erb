@@ -50,7 +50,8 @@
 </div>
 <br>
 <div class = "meals">
-	<%= link_to "Back to Restaurant", restaurants_path, class:"btn btn-primary" %>
+
+<%= link_to "Back to Restaurant", restaurants_path, class:"btn btn-primary" %>
 
 	<% if current_user&.admin? || current_user&.restaurant_owner? %>
 	<% if current_user == @restaurant.user %>

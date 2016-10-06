@@ -23,7 +23,9 @@
           <div class="vendor-list">
             <img src="<%=restaurant.profile_image%>" alt="" width="80" height="80">
             <span>
-              <%=link_to restaurant.name, restaurant_path(restaurant) %>
+
+              <%= link_to restaurant.name, restaurant_path(restaurant) %>
+
             </span>
             <span class = "pull-xs-right">
               Pickup in 20 minutes

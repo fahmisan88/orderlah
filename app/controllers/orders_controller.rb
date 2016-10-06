@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
   before_action :get_amount
 
   def index
-    @orders = Order.where(user: current_user)
-
+    @orders = current_user.orders
   end
 
   def restaurant_orders
+
 
     @restaurant = Restaurant.find_by(id: params[:restaurant_id])
     @orders = @restaurant.orders
@@ -16,6 +16,9 @@ class OrdersController < ApplicationController
 
 
     # @orders = Order.where(restaurant: current_user.restaurant_id)
+
+
+    # @restaurant = Restaurant.find_by(id: params[:restaurant_id])
 
   end
 
