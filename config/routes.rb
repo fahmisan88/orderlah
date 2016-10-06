@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get :cart, to: "carts#show"
   post :add_meal, to: "carts#add_meal"
   delete :remove_meal, to: "carts#remove_meal"
-  patch :update_meal, to: "carts#update_meal"
+  post :update_meal, to: "carts#update_meal"
   resources :orders, only: [:index, :new, :create, :show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

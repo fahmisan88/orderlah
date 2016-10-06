@@ -18,13 +18,23 @@ class CartsController < ApplicationController
 
   def update_meal
     if @cart[params[:id]]
-      @cart[params[:id]] = params[:quantity]
+      # @cart[params[:id]] = params[:quantity]
+      quantity = params[:quantity].to_i
+      quantityOld = @cart[params[:id]].to_i
+      @cart[params[:id]] = quantityOld + quantity
+      if @cart[params[:id]] == 0
+        remove_meal
+      else
+        redirect_to cart_path
+      end
     end
+
 
   end
 
   def remove_meal
     @cart.delete params[:id]
+    redirect_to cart_path
   end
 
 
