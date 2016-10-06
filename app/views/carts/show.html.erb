@@ -1,12 +1,19 @@
+<%= render '/layouts/navbar' %>
+<br>
+<br>
+<br>
+<div class= "text-xs-center">
 <h2>Review Order</h2>
 <br>
 <% if @restaurants.empty? %>
 <h2>Your Order List Is Currently Empty</h2>
 <% else %>
+</div>
 <% @restaurants.each do |restaurant_id, restaurant|%>
-<h2><%= restaurant[:name] %></h2>
+
 <div class= "container">
-  <div class="pull-xs-left">
+  <h2><%= restaurant[:name] %></h2>
+  <div class="pull-xs-left text-xs-center">
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -27,9 +34,9 @@
       <td><%= meal.name %></td>
       <td><%= number_to_currency(meal.price, :unit => 'RM') %></td>
       <td>
-        <input type="button" class="minus" value="-">
-        <%= text_field_tag :quantity, meal.quantity, type: "number" %>
-        <input type="button" class="plus" value="+">
+        <span>&nbsp; &nbsp;<%= link_to '', update_meal_path(id: meal, quantity: -1), method: :post, class:"fa fa-minus-circle" %></span>
+        <%= meal.quantity%>
+        <span>&nbsp; &nbsp;<%= link_to '', update_meal_path(id: meal, quantity: 1), method: :post, class:"fa fa-plus-circle" %></span>
       </td>
       <td><span class="amount">RM<%=meal.price*=meal.quantity.to_i%></span></td>
       <!-- <td>< %= meal.restaurant.user.email %></td> -->
@@ -48,8 +55,9 @@
   </tbody>
 </table>
 </div>
-<div class= "pull-xs-right">
-  Order Information
+<div class= " card pull-xs-right">
+  <div class = "card-block">
+  <h3>Order Information</h3>
   <div class="form-group">
   <span class= "pull-xs-left">
     <label for="sel1">Select Date Time</label>
@@ -60,7 +68,7 @@
       <option><%= Date.current+3 %></option>
     </select>
   </span>
-
+<span class="pull-xs-left">&nbsp; &nbsp; &nbsp; &nbsp;</span>
     <span class= "pull-xs-right">
     <label for="sel1">Select Pickup Time</label>
     <select class="form-control" id="sel1">
@@ -73,18 +81,23 @@
     </select>
     </span>
   </div>
+
+  </div>
 </div>
 </div>
 <% end %>
 <% end %>
+<br>
 <span>
-  <%= link_to "Add Order", root_path%>
+  <div class="text-xs-center">
+  <%= link_to "Add Order", restaurants_path%>
   <% if current_user %>
   <% if @restaurants.empty? %>
   <% else %>
-  <%= link_to "Place Order", new_order_path, method: :get%>
+  <%= link_to "Checkout", new_order_path, method: :get, class:"btn btn-primary" %>
   <% end %>
   <%else%>
   <%= link_to "Login first to Place Order", new_user_session_path%>
   <%end%>
+  </div>
 </span>
