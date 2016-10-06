@@ -1,4 +1,3 @@
-
 <%= render '/layouts/navbar' %>
 
 <div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
@@ -14,9 +13,6 @@
   <div class="container">
     <h1>Restaurant list</h1>
 
-    <!-- < % if current_user&.restaurant_owner? %>
-    < %= link_to "New Restaurant", new_restaurant_path, class:"btn btn-primary" %>
-    < % end%> -->
     <p>
       <% @restaurants.each do |restaurant| %>
       <article class="list-group container">
@@ -24,25 +20,23 @@
           <div class="vendor-list">
             <img src="<%=restaurant.profile_image%>" alt="" width="80" height="80">
             <span>
-
               <%= link_to restaurant.name, restaurant_path(restaurant) %>
-
             </span>
             <span class = "pull-xs-right">
               Pickup in 20 minutes
             </span>
             <span>
-              <% if current_user&.admin? || current_user&.restaurant_owner? %>
-              <% if current_user == restaurant.user %>
-              <%= link_to "", edit_restaurant_path(restaurant), class:"fa fa-pencil"%>
-              <%= link_to "", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" }, class:"fa fa-trash-o" %>
-              <% end %>
-              <% end %>
+              <!-- < % if current_user&.admin? || current_user&.restaurant_owner? %>
+              < % if current_user == restaurant.user %>
+              < %= link_to "", edit_restaurant_path(restaurant), class:"fa fa-pencil"%>
+              < %= link_to "", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" }, class:"fa fa-trash-o" %>
+              < % end %>
+              < % end %> -->
             </span>
-          </div>
-
-        </li>
-      </article>
+            </div>
+          </li>
+        </article>
       <% end%>
     </div>
   </div>
+  <%= render 'layouts/footer' %>

@@ -1,10 +1,22 @@
 <nav class="bg-faded navbar navbar-full navbar-light">
-  <a class="navbar-brand" href="#"><div class="logo"><%= image_tag 'logo-inverse.png', width: '100px', height: '35px'  %></div></a>
+  <a class="navbar-brand" href="http://localhost:3000"><div class="logo"><%= image_tag 'logo-inverse.png', width: '100px', height: '35px'  %></div></a>
+
+  <ul class="nav navbar-nav pull-right">
+        <%= link_to "My Cart", cart_path, class: "dropdown-item" %></li>
+  </ul>
+
+  <% if current_user&.restaurant_owner? %>
+  <ul class="nav navbar-nav pull-right">
+        <%= link_to "My Dashboard", dashboard_path, class: "dropdown-item" %></li>
+  </ul>
+  <% end %>
+
   <% if user_signed_in? %>
   <ul class="nav navbar-nav pull-right">
     <div class="dropdown">
       <li class="nav-item dropdown-toggle" data-toggle="dropdown"><%= current_user.email %></li>
       <div class="dropdown-menu dropdown-menu-right">
+        <%= link_to "My Orders", orders_path, class: "dropdown-item" %>
         <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
         <%= link_to "Sign Out", destroy_user_session_path, class: "dropdown-item", method: :delete %>
 
@@ -17,19 +29,6 @@
       </div>
     </div>
   </ul>
-
-  <% if current_user&.restaurant_owner? %>
-  <ul class="nav navbar-nav pull-right">
-    <div class="dropdown">
-      <li class="nav-item dropdown-toggle" data-toggle="dropdown">Restaurant</li>
-      <div class="dropdown-menu dropdown-menu-right">
-        <%= link_to "My Dashboard", dashboard_path, class: "dropdown-item" %></li>
-        <%= link_to "My Restaurant", restaurant_applications_path, class: "dropdown-item" %></li>
-        <%= link_to "My Sales", restaurant_orders_path, class: "dropdown-item" %></li>
-      </div>
-    </div>
-  </ul>
-  <% end %>
 
   <% else %>
   <ul class="nav navbar-nav pull-right">

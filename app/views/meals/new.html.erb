@@ -1,6 +1,16 @@
-<h1>New Meal</h1>
+<%= render '/layouts/navbar' %>
+<div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
+  <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+    <h1 class="cursive-font text-xs-center hero-title">Add New Meal</h1>
+    <span class="intro-text-small text-xs-center hero-text">For Restaurant: <%= @restaurant.name %> </span>
+  </div>
+</div>
 
-<%= form_for(@meal, url: restaurant_meals_path(@restaurant, @meal)) do |f| %>
+<div class="section top-padding">
+  <div class="container">
+
+  <%= form_for(@meal, url: restaurant_meals_path(@restaurant, @meal)) do |f| %>
 
   <div>
     <%= f.label :name %>
@@ -22,11 +32,15 @@
     <%= f.file_field :image, class:"form-control" %>
   </div>
 
-
+<p>
   <div>
+    <%= link_to 'Back', restaurants_path, class:"btn btn-success" %>
     <%= f.submit class:"btn btn-success" %>
   </div>
 
-<% end %>
+  <% end %>
 
-<%= link_to 'Back', restaurants_path %>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

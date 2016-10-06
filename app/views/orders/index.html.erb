@@ -1,11 +1,29 @@
-<h1>Order list</h1>
-<%@orders.each do |order|%>
+<%= render '/layouts/navbar' %>
+<div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
+  <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+    <h1 class="cursive-font text-xs-center hero-title">My Orders</h1>
+    <span class="intro-text-small text-xs-center hero-text"> </span>
+  </div>
+</div>
 
-  <h3>Order ID: <%=order.id%></h3>
-  <h4>Order Status: <%=order.status%></h4>
-  <% order.ordered_meals.each do |ordered_meal| %>
-    <div> Meal Name: <%= ordered_meal.meal.name %> </div>
-    <div> Quantity: <%= ordered_meal.quantity %> </div>
-  <% end %>
+<div class="section top-padding">
+  <div class="container">
 
-<% end%>
+    <%@orders.each do |order|%>
+    <article class="list-group container">
+      <li class="list-group-item">
+        <div class="vendor-list">
+          <h3>Order ID: <%=order.id%></h3>
+          <h4>Order Status: <%=order.status%></h4>
+          <% order.ordered_meals.each do |ordered_meal| %>
+          <span>Meal Name: <%= ordered_meal.meal.name %> </span><br>
+          <span> Qty: <%= ordered_meal.quantity %> </span><br>
+          <% end %>
+        </div>
+      </li>
+    </article>
+    <% end%>
+  </div>
+</div>
+<%= render 'layouts/footer' %>

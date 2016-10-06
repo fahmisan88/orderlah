@@ -1,13 +1,14 @@
 <%= render '/layouts/navbar' %>
-
 <div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
   <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+    <h1 class="cursive-font text-xs-center hero-title">Edit Profile</h1>
+    <span class="intro-text-small text-xs-center hero-text"></span>
+  </div>
 </div>
 
 <div class="section top-padding">
   <div class="container">
-
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
@@ -43,17 +44,17 @@
       <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
-
+<p>
     <div class="actions">
-      <%= f.submit "Update" %>
+      <%= link_to "Back", :back , class:"btn btn-success"%>
+
+      <%= f.submit "Update", class:"btn btn-success" %>
     </div>
     <% end %>
-
+<p><p>
     <h3>Cancel my account</h3>
 
-    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-    <%= link_to "Back", :back %>
+    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class:"btn btn-danger"%></p>
 
   </div>
 </div>
