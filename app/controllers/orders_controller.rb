@@ -6,9 +6,10 @@ class OrdersController < ApplicationController
   end
 
   def restaurant_orders
-    # @restaurant = Restaurant.find_by(id: params[:restaurant_id])
-    @restaurant = Restaurant.find_by(id: params[:id])
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+
     @orders = @restaurant.orders
+
   end
 
   def new
