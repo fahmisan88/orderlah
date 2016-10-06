@@ -1,2 +1,48 @@
-View my orders:
-<%= link_to "Restaurant Order", restaurant_orders_path(@restaurant), class:"btn btn-primary" %>
+<%= render '/layouts/navbar' %>
+
+<div class="section section-banner section-opaque-dark text-xs-center" draggable="true">
+  <div class="background-image" style="background-image: url(<%=asset_path('foodbanner.jpg')%>);"></div>
+</div>
+
+<div class="section top-padding">
+  <div class="container">
+
+    <h1>My Restaurant</h1>
+
+    <!-- < % if current_user&.restaurant_owner? %>
+    < %= link_to "New Restaurant", new_restaurant_path, class:"btn btn-primary" %>
+    < % end%> -->
+    <p>
+      <% @restaurants.each do |restaurant| %>
+      <article class="list-group container">
+        <li class="list-group-item">
+          <div class="vendor-list">
+            <img src="<%=restaurant.profile_image%>" alt="" width="80" height="80">
+            <span>
+              <%= link_to restaurant.name, restaurant_path(restaurant) %>
+            </span>
+
+            <span>
+              <% if current_user&.admin? || current_user&.restaurant_owner? %>
+              <% if current_user == restaurant.user %>
+              <%= link_to "", edit_restaurant_path(restaurant), class:"fa fa-pencil"%>
+              <%= link_to "", restaurant_path(restaurant), method: :delete, data: { confirm: "Delete?" }, class:"fa fa-trash-o" %>
+
+              <%= link_to "Sale", restaurant_orders_path(restaurant_id: restaurant.id) %>
+
+              <% end %>
+              <% end %>
+            </span>
+          </div>
+        </li>
+      </article>
+      <% end%>
+      <p>  <p>
+
+        <% if current_user&.restaurant_owner? %>
+        <%= link_to "New Restaurant", new_restaurant_path, class:"btn btn-primary" %>
+        <% end%>
+      </div>
+    </div>
+    <p>
+      <p>

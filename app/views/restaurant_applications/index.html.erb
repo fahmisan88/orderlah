@@ -11,18 +11,20 @@
     You do not have any application
     <br><br>
     <% else %>
-    <h1>My Restaurant Application</h1>
+    <h1>My Application</h1>
 
     <% if current_user&.restaurant_owner? %>
-    <%= link_to "New Application", new_restaurant_application_path, class:"btn btn-primary" %>
+      <% if @restaurant_applications.empty? %>
+        <%= link_to "New Application", new_restaurant_application_path, class:"btn btn-primary" %>
+      <% end%>
     <% end%>
-    <p>
 
+    <p>
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Restaurant Name</th>
-            <th>Restaurant Document</th>
+            <th>Applicant Name</th>
+            <th>NRIC Photo</th>
             <th>Phone Number</th>
             <th>Phone Verified?</th>
             <th>Application Status</th>
@@ -54,4 +56,4 @@
           <% end%>
         </div>
       </div>
-    <% end %>
+      <% end %>

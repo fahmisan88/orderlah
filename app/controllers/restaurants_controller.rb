@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
   before_filter :authenticate_user!, only: [:dashboard, :new, :create, :edit, :update, :destroy]
 
   def dashboard
-
+    @restaurants = current_user.restaurants
   end
 
   def index
