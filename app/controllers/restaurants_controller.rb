@@ -3,10 +3,10 @@ class RestaurantsController < ApplicationController
 
   def dashboard
     @restaurants = current_user.restaurants
+    authorize @restaurants
   end
 
   def index
-
     @restaurants = Restaurant.all
 
     if params[:search]
@@ -40,7 +40,7 @@ class RestaurantsController < ApplicationController
     authorize @restaurant
 
     if @restaurant.save
-      redirect_to restaurants_path, notice: 'Restaurant was successfully created.'
+      redirect_to dashboard_path, notice: 'Restaurant was successfully created.'
     else
       render :new
     end
@@ -56,7 +56,7 @@ class RestaurantsController < ApplicationController
     authorize @restaurant
 
     if @restaurant.update(restaurant_params)
-      redirect_to restaurants_path, notice: 'Restaurant was successfully updated.'
+      redirect_to dashboard_path, notice: 'Restaurant was successfully updated.'
     end
   end
 
@@ -65,7 +65,7 @@ class RestaurantsController < ApplicationController
     authorize @restaurant
 
     if @restaurant.destroy
-      redirect_to restaurants_path, notice: 'Restaurant was successfully destroyed.'
+      redirect_to dashboard_path, notice: 'Restaurant was successfully destroyed.'
     end
   end
 

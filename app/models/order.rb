@@ -4,5 +4,5 @@ class Order < ApplicationRecord
   has_many :meals, through: :ordered_meals
   has_many :ordered_meals
 
-  enum status: [:received, :in_progress, :completed]
+  enum status: [:Received, :Processing, :Completed]
 end

@@ -1,5 +1,22 @@
 class OrdersController < ApplicationController
+  before_filter :authenticate_user!
   before_action :get_amount
+
+  before_action :load_split_cart, only: [:splitorder]
+
+  def edit
+    @order = Order.find_by(id: params[:id])
+    @restaurant = @order.restaurant
+  end
+
+  def update
+    @order = Order.find_by(id: params[:id])
+    @restaurant = @order.restaurant
+
+    if @order.update(order_params)
+      redirect_to restaurant_orders_path(restaurant_id: @restaurant.id), notice: 'Order status was successfully updated.'
+    end
+  end
 
   def index
     @orders = current_user.orders
@@ -15,6 +32,19 @@ class OrdersController < ApplicationController
     # @order = Order.new
   end
 
+  def splitorder
+    @meals = []
+
+        @cart.each do |meal_id,quantity|
+          meal = Meal.find_by(id: meal_id)
+          meal.define_singleton_method(:quantity) do
+            quantity
+          end
+          @meals << meal
+
+        end
+  end
+
   def create
     @restaurants = current_order
 
@@ -23,38 +53,43 @@ class OrdersController < ApplicationController
         :total => restaurant[:total],
         :restaurant_id => restaurant_id})
 
-      restaurant[:meals].each do |meal|
-        @order.ordered_meals.build( {:meal_id => meal.id, :quantity => meal.quantity })
+        restaurant[:meals].each do |meal|
+          @order.ordered_meals.build( {:meal_id => meal.id, :quantity => meal.quantity })
+        end
+
+        if !@order.save
+          break
+        end
       end
 
-      if !@order.save
-        break
+      cookies.delete(:cart)
+      redirect_to orders_path
+    end
+
+    private
+
+    def get_amount
+      if cookies[:cart]
+        @cart = JSON.parse(cookies[:cart])
+      else
+        @cart = {}
+      end
+
+      @meals = []
+      @total_price = 0.0;
+
+      @cart.each do |meal_id,quantity|
+        meal = Meal.find_by(id: meal_id)
+        meal.define_singleton_method(:quantity) { quantity }
+        price = meal.price * quantity.to_f
+        @total_price += price
+        @meals << meal
       end
     end
 
-    cookies.delete(:cart)
-    redirect_to orders_path
-  end
-
-  private
-  def get_amount
-    if cookies[:cart]
-      @cart = JSON.parse(cookies[:cart])
-    else
-      @cart = {}
+    def order_params
+      params.require(:order).permit(:status)
     end
 
-    @meals = []
-    @total_price = 0.0;
 
-    @cart.each do |meal_id,quantity|
-      meal = Meal.find_by(id: meal_id)
-      meal.define_singleton_method(:quantity) { quantity }
-      price = meal.price * quantity.to_f
-      @total_price += price
-      @meals << meal
-    end
   end
-
-
-end

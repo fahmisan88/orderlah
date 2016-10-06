@@ -6,11 +6,20 @@ class CartsController < ApplicationController
     @restaurants = current_order
   end
 
+  def splitcart
+    @restaurants = current_order
+  end
+
   def add_meal
+    @meal = Meal.find_by(id: params[:id])
+    @restaurant = @meal.restaurant
+
     if @cart[params[:id]]
       quantity = params[:quantity].to_i
       quantityOld = @cart[params[:id]].to_i
       @cart[params[:id]] = quantityOld + quantity
+      redirect_to restaurant_path(@restaurant), notice: 'Meal was successfully added. Would you like to add more or view your meals at your Cart'
+
     else
       @cart[params[:id]] = params[:quantity]
     end
@@ -25,7 +34,7 @@ class CartsController < ApplicationController
       if @cart[params[:id]] == 0
         remove_meal
       else
-        redirect_to cart_path
+        redirect_to cart_path, notice: 'Meal was successfully updated.'
       end
     end
 
@@ -34,7 +43,7 @@ class CartsController < ApplicationController
 
   def remove_meal
     @cart.delete params[:id]
-    redirect_to cart_path
+    redirect_to cart_path, notice: 'Meal was successfully deleted.'
   end
 
 

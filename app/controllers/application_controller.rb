@@ -41,6 +41,29 @@ class ApplicationController < ActionController::Base
     restaurants
   end
 
+  def current_order_split
+    restaurants = {}
+    @cart.each do |meal_id,quantity|
+      meal = Meal.find_by(id: meal_id)
+      meal.define_singleton_method(:quantity) do
+        quantity
+      end
+
+      if(!restaurants[meal.restaurant.id])
+        restaurants[meal.restaurant.id] = {
+          :name => meal.restaurant.name,
+          :total => 0,
+          :meals => []
+        }
+      end
+
+      restaurants[meal.restaurant.id][:total] += meal.price * meal.quantity.to_i
+      restaurants[meal.restaurant.id][:meals] << meal
+    end
+
+    restaurants
+  end
+
   def load_cart
     if cookies[:cart]
       @cart = JSON.parse(cookies[:cart])
@@ -50,6 +73,18 @@ class ApplicationController < ActionController::Base
   end
 
   def write_cart
+    cookies[:cart] = JSON.generate(@cart)
+  end
+
+  def load_split_cart
+    if cookies[:cart]
+      @cart = JSON.parse(cookies[:cart])
+    else
+      @cart = {}
+    end
+  end
+
+  def write_split_cart
     cookies[:cart] = JSON.generate(@cart)
   end
 

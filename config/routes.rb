@@ -9,10 +9,15 @@ Rails.application.routes.draw do
 
   get :restaurant_orders, to: "orders#restaurant_orders"
   get :cart, to: "carts#show"
+  
+  get :splitcart, to: "carts#splitcart"
+  get :splitorder, to: "orders#splitorder"
+
+
   post :add_meal, to: "carts#add_meal"
   delete :remove_meal, to: "carts#remove_meal"
   post :update_meal, to: "carts#update_meal"
-  resources :orders, only: [:index, :new, :create, :show]
+  resources :orders
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :restaurants do

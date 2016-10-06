@@ -14,15 +14,32 @@
     <article class="list-group container">
       <li class="list-group-item">
         <div class="vendor-list">
-          <h3>Order ID: <%=order.id%></h3>
-          <h4>Order Status: <%=order.status%></h4>
-          <% order.ordered_meals.each do |ordered_meal| %>
-          <span>Meal Name: <%= ordered_meal.meal.name %> </span><br>
-          <span> Qty: <%= ordered_meal.quantity %> </span><br>
-          <% end %>
+          <h4>Order ID: <%= order.id %></h4>
+          <h5>Order Status: <%= order.status %></h5>
+          <h5>Restaurant: <%= order.restaurant.name %></h5>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Food Image</th>
+                <th>Food Name</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% order.ordered_meals.each do |ordered_meal| %>
+              <tr>
+                <td><%= image_tag ordered_meal.meal.image.thumb %> </td>
+                <td><%= ordered_meal.meal.name %> </td>
+                <td><%= ordered_meal.quantity %> </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </li>
     </article>
+    <p></p>
+
     <% end%>
   </div>
 </div>
