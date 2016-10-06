@@ -4,16 +4,15 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find_by(id: params[:id])
+    @restaurant = @order.restaurant
   end
 
   def update
     @order = Order.find_by(id: params[:id])
-    # @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+    @restaurant = @order.restaurant
 
-# binding.pry
     if @order.update(order_params)
-      redirect_to dashboard_path, notice: 'Order status was successfully updated.'
-      # redirect_to restaurant_orders_path(restaurant_id: restaurant.id), notice: 'Order status was successfully updated.'
+    redirect_to restaurant_orders_path(restaurant_id: @restaurant.id), notice: 'Order status was successfully updated.'
 
   end
   end
