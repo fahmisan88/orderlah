@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
       if(!restaurants[meal.restaurant.id])
         restaurants[meal.restaurant.id] = {
           :name => meal.restaurant.name,
+          :id => meal.restaurant.id,
           :total => 0,
           :meals => []
         }

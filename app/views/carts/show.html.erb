@@ -84,22 +84,23 @@
 
   </div>
 </div>
+
 </div>
-<% end %>
-<% end %>
 <br>
 <span>
   <div class="text-xs-center">
-  <%= link_to "Search For Food", root_path, class:"btn btn-primary" %>
+  <%= link_to "Search For Food", restaurants_path, class:"btn btn-primary" %>
   <% if current_user %>
   <% if @restaurants.empty? %>
   <% else %>
-  <%= link_to "Checkout", new_order_path, method: :get, class:"btn btn-primary" %>
+  <%= link_to "Checkout", new_order_path(restaurant), method: :get, class:"btn btn-primary" %>
   <% end %>
   <%else%>
   <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-primary">Login to Checkout Order</a>
   <%end%>
   </div>
 </span>
+<% end %>
+<% end %>
 
 <%= render 'layouts/footer' %>

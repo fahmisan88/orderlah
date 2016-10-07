@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
   before_action :get_amount
-
+  before_action :load_cart, only: [:new]
   before_action :load_split_cart, only: [:splitorder]
 
   def edit
@@ -29,7 +29,12 @@ class OrdersController < ApplicationController
 
   def new
     @restaurants = current_order
-    # @order = Order.new
+
+    @order_times = {}
+    for i in 1..6
+      time = (Time.now.advance(:hours => +i).beginning_of_hour)
+      @order_times[time.strftime("%H:%M")] = time
+    end
   end
 
   def splitorder
@@ -48,11 +53,16 @@ class OrdersController < ApplicationController
 
   def create
     @restaurants = current_order
-
+    # binding.pry
     @restaurants.each do |restaurant_id, restaurant|
-      @order = current_user.orders.build( {:status => :received,
+      binding.pry
+      @order = current_user.orders.build( {:status => :Received,
         :total => restaurant[:total],
-        :restaurant_id => restaurant_id})
+        :restaurant_id => restaurant_id,
+        :eta => DateTime.strptime(
+          params["order_times_"+restaurant_id.to_s],
+          "%Y-%m-%d %H:%M:%S %Z")
+        })
 
         restaurant[:meals].each do |meal|
           @order.ordered_meals.build( {:meal_id => meal.id, :quantity => meal.quantity })
@@ -60,10 +70,12 @@ class OrdersController < ApplicationController
 
         if !@order.save
           break
+        else
+
+          cookies.delete(:cart)
         end
       end
 
-      cookies.delete(:cart)
       redirect_to orders_path
     end
 
