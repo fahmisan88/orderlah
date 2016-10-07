@@ -35,14 +35,15 @@ class OrdersController < ApplicationController
   def splitorder
     @meals = []
 
-        @cart.each do |meal_id,quantity|
-          meal = Meal.find_by(id: meal_id)
-          meal.define_singleton_method(:quantity) do
-            quantity
-          end
-          @meals << meal
+    params["meals"].each do |meal_id|
+      meal = Meal.find_by(id: meal_id)
+      quantity = @cart[meal_id]
+      meal.define_singleton_method(:quantity) do
+        quantity
+      end
 
-        end
+      @meals << meal
+    end
   end
 
   def create
