@@ -6,6 +6,7 @@
   </h4>
 </div>
 
+<%= form_tag orders_path do %>
 <% @restaurants.each do |restaurant_id, restaurant|%>
 <h2><%= restaurant[:name] %></h2>
 <table cellspacing="0" class="table table-bordered">
@@ -16,6 +17,7 @@
       <th class="product-price">Price</th>
       <th class="product-quantity">Quantity</th>
       <th class="product-subtotal">Total</th>
+      <th class="product-subtotal">Subtotal</th>
       <th class="product-subtotal">Pickup Time</th>
     </tr>
   </thead>
@@ -35,21 +37,19 @@
       </td>
 
       <td class="product-quantity">
-          <%= meal.quantity %>
+        <%= meal.quantity %>
       </td>
 
       <td class="product-subtotal">
         <span class="amount">RM<%=meal.price*=meal.quantity.to_i%></span>
       </td>
       <td class="product-subtotal">
-        <%=meal.price*=meal.quantity.to_i%>
+        <%=select_tag "order_times_"+restaurant[:id].to_s, options_for_select(@order_times), prompt: "Select Time"%>
       </td>
     </tr>
     <%end%>
-
   </tbody>
 </table>
-<% end %>
 
 <div class="cart_totals ">
   <h2>Total:</h2>
@@ -63,4 +63,6 @@
     </tbody>
   </table>
 </div>
-<%= link_to "Submit Order", orders_path, method: :post, class:"btn btn-success" %>
+<% end %>
+<%= submit_tag "Submit Order", class:"btn btn-success" %>
+<% end %>

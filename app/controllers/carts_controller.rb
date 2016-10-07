@@ -4,6 +4,7 @@ class CartsController < ApplicationController
 
   def show
     @restaurants = current_order
+    @order = current_order
   end
 
   def splitcart
@@ -45,6 +46,12 @@ class CartsController < ApplicationController
     @cart.delete params[:id]
     redirect_to cart_path, notice: 'Meal was successfully deleted.'
   end
+
+  # def add_eta
+  #   @meal = Meal.find_by(id: params[:id])
+  #   @restaurant = @meal.restaurant
+  # end
+
 
 
 end
